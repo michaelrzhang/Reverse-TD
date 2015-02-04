@@ -1,13 +1,11 @@
-public abstract class Creature{
+public abstract class Projectile{
 	String name;
-	int health;
 	double x_velocity;
 	double y_velocity;
 	double x_position;
 	double y_position;
 	double time_alive;
-	int cost;
-	int level;
+	boolean honing;
 	Shape hit_box;
 
 	abstract void action();
