@@ -1,4 +1,4 @@
-public abstract Shape class{
+public abstract class Shape{
 	double x_position;
 	double y_position;
 	String name;
