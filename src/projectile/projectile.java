@@ -1,4 +1,5 @@
-public abstract class Projectile{
+package projectile;
+public abstract class projectile{
 	String name;
 	double x_velocity;
 	double y_velocity;

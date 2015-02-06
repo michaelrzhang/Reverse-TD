@@ -1,3 +1,4 @@
+package tower;
 public abstract class Tower{
 	double x_position;
 	double y_position;

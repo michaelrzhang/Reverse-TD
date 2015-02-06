@@ -1,3 +1,4 @@
+package UI;
 public abstract class UI{
 	double x_position;
 	double y_position;

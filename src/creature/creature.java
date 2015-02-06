@@ -1,3 +1,5 @@
+package creature;
+import shape;
 public abstract class Creature{
 	String name;
 	int health;

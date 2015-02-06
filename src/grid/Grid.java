@@ -1,3 +1,4 @@
+package grid;
 public abstract class Grid{
 	String name; // id of grid
 	double x_position; // xposition of center
