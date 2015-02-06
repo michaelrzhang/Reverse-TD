@@ -17,10 +17,12 @@ public class Direction_Grid extends Path_Grid{
 		this.y_direction = this.y_position - next.y_position;
 	}
 	public void setDirection(Creature c){
-		double velocity = Math.sqrt(c.x_velocity*c.x_velocity + c.y_velocity * c.y_velocity);
+		double x_vel = c.get_x_velocity();
+		double y_vel = c.get_y_velocity();
+		double velocity = Math.sqrt(x_vel*x_vel + y_vel * y_vel);
 		double r = Math.sqrt(x_direction*x_direction + y_direction*y_direction);
-		c.x_velocity = velocity * x_direction / r;
-		c.y_velocity = velocity * y_direction / r;
+		c.set_x_velocity(velocity * x_direction / r);
+		c.set_y_velocity(velocity * y_direction / r);
 	}
 	public void setCreaturesDirection(){
 		for (Creature c : creatures){

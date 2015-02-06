@@ -1,4 +1,6 @@
 package UI;
+import shape.*;
+import creature.*;
 public abstract class UI{
 	double x_position;
 	double y_position;

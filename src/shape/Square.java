@@ -1,3 +1,4 @@
+package shape;
 public abstract class Square{
 	double x_position;
 	double y_position;

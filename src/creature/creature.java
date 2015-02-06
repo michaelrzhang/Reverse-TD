@@ -1,5 +1,5 @@
 package creature;
-import shape;
+import shape.*;
 public abstract class Creature{
 	String name;
 	int health;
@@ -14,5 +14,17 @@ public abstract class Creature{
 
 	abstract void action();
 	abstract void draw();
+	public double get_x_velocity(){
+		return x_velocity;
+	}
+	public double get_y_velocity(){
+		return y_velocity;
+	}
+	public void set_x_velocity(double x){
+		this.x_velocity = x;
+	}
+	public void set_y_velocity(double y){
+		this.y_velocity = y;
+	}
 
 }
