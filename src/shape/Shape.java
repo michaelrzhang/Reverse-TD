@@ -1,5 +1,7 @@
 package shape;
 public abstract class Shape{
+	// SHOULD TEST/CONSIDER IMPROVEMENTs to overlap
+	// Generic polygon class?
 	double x_position;  // these should be the coordinates of the center
 	double y_position;
 	double apothem;
