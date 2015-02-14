@@ -15,10 +15,12 @@ public class Basic_Creature extends Creature{
 		super(m,nm);
 		this.hit_box = new Square(x_position, y_position, 0.5);
 	}
+
 	public Basic_Creature(double x_pos, double y_pos, Direction_Grid dg, Map m, String nm){
 		super(x_pos, y_pos, dg, m, nm);
 		this.hit_box = new Square(x_pos, y_pos, 0.5);
 	}
+	
 	public void action(double dt){
 		move(dt);
 		time_alive += dt;
@@ -35,7 +37,8 @@ public class Basic_Creature extends Creature{
 		x_position += x_velocity * dt;
 		y_position += y_velocity * dt;
 		grid.remove_Creature(this);
-		grid = (Direction_Grid) map.closestGrid(x_position,y_position);
+		grid = (Direction_Grid) map.closestGrid(x_position,y_position);  // grid is null here
+		System.out.println(grid.type());
 		grid.addCreature(this);
 	}
 	private void remove(){
