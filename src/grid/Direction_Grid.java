@@ -14,9 +14,11 @@ public class Direction_Grid extends Path_Grid{
 	}
 	public Direction_Grid(Grid g, Grid next){
 		super(g.x_position, g.y_position, g.name);
+		this.x_direction = next.x_position - this.x_position;
+ 		this.y_direction = next.y_position - this.y_position;
 		double r = Math.sqrt(x_direction * x_direction + y_direction * y_direction);
-		this.x_direction = xDirection / r;
-		this.y_direction = yDirection / r;
+		this.x_direction = x_direction / r;
+		this.y_direction = y_direction / r;
 	}
 	public void setDirection(Creature c){
 		double x_vel = c.get_x_velocity();

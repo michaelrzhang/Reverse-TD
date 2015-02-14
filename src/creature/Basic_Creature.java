@@ -37,6 +37,8 @@ public class Basic_Creature extends Creature{
 		x_position += x_velocity * dt;
 		y_position += y_velocity * dt;
 		grid.remove_Creature(this);
+		System.out.println(x_position);
+		System.out.println(y_position);
 		grid = (Direction_Grid) map.closestGrid(x_position,y_position);  // grid is null here
 		System.out.println(grid.type());
 		grid.addCreature(this);
