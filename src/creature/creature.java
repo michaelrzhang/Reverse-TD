@@ -30,8 +30,8 @@ public abstract class Creature{
 		this.x_position = grid.get_x_position();
 		this.y_position = grid.get_y_position();
 	}
-	abstract void action(double dt);
-	abstract void draw();
+	public abstract void action(double dt);
+	public abstract void draw();
 	public double get_x_velocity(){
 		return x_velocity;
 	}
