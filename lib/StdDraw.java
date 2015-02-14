@@ -1,3 +1,4 @@
+package lib;
 /*************************************************************************
  *  Compilation:  javac StdDraw.java
  *  Execution:    java StdDraw
@@ -22,7 +23,6 @@
  *       it can cause flicker
  *
  *************************************************************************/
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;

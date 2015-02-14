@@ -1,5 +1,5 @@
-package grid;
-import creature.*;
+package src.grid;
+import src.creature.Creature;
 public class Direction_Grid extends Path_Grid{
 	double x_direction;
 	double y_direction;
@@ -36,5 +36,17 @@ public class Direction_Grid extends Path_Grid{
 	}
 	public void setEnd(){
 		this.isEnd = true;
+	}
+	public void set_Creature(Creature c){
+		creatures[0] = c; // WE NEED ARRAYLISTS
+	}
+	public void remove_Creature(Creature c){
+		creatures[0] = null; //WE NEED ARRAYLISTS
+	}
+	public String type(){
+		return "Direction";
+	}
+	public void addCreature(Creature c){
+		creatures[0] = c;
 	}
 }

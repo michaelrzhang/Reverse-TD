@@ -1,5 +1,7 @@
-package creature;
-import shape.*;
+package src.creature;
+import src.shape.*;
+import src.map.*;
+import src.grid.*;
 public abstract class Creature{
 	String name;
 	int health;
@@ -11,8 +13,24 @@ public abstract class Creature{
 	int cost;
 	int level;
 	Shape hit_box;
-
-	abstract void action();
+	Direction_Grid grid;
+	Map map;
+	public Creature(double x_pos, double y_pos, Direction_Grid dg, Map m, String nm){
+		this.x_position = x_pos;
+		this.y_position = y_pos;
+		this.name = nm;
+		this.grid = dg;
+		this.map = m;
+		this.grid.set_Creature(this);
+	}
+	public Creature(Map m, String nm){
+		this.map = m;
+		this.name = nm;
+		this.grid = m.get_start();
+		this.x_position = grid.get_x_position();
+		this.y_position = grid.get_y_position();
+	}
+	abstract void action(double dt);
 	abstract void draw();
 	public double get_x_velocity(){
 		return x_velocity;

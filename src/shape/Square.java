@@ -1,5 +1,7 @@
-package shape;
-public class Square{
+package src.shape;
+// import Color.*;
+import lib.*;
+public class Square extends Shape{
 	// To-do Nonstatic method for overlap
 	double x_position;
 	double y_position;
@@ -10,5 +12,9 @@ public class Square{
 		x_position = x_pos;
 		y_position = y_pos;
 		apothem = radius;
+	}
+	public void draw(){
+		StdDraw.setPenColor(StdDraw.RED);
+		StdDraw.filledSquare(x_position, y_position, apothem);
 	}
 }

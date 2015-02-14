@@ -1,4 +1,4 @@
-package shape;
+package src.shape;
 public abstract class Shape{
 	// SHOULD TEST/CONSIDER IMPROVEMENTs to overlap
 	// Generic polygon class?
@@ -49,4 +49,11 @@ public abstract class Shape{
 		double delta_y = a.y_position - b.y_position;
 		return Math.sqrt(delta_x * delta_x + delta_y * delta_y);
 	}
+	public void set_X(double x){
+		this.x_position = x;
+	}
+	public void set_Y(double y){
+		this.y_position = y;
+	}
+	public abstract void draw();
 }

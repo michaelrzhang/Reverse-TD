@@ -1,4 +1,4 @@
-package grid;
+package src.grid;
 public abstract class Grid{
 	String name; // id of grid
 	double x_position; // xposition of center
@@ -15,6 +15,13 @@ public abstract class Grid{
 		// this.adjacent[2] = lower;
 		// this.adjacent[3] = right;
 	}
+	public abstract String type();
 	public void setStart(){}
 	public void setEnd(){}
+	public double get_x_position(){
+		return x_position;
+	}
+	public double get_y_position(){
+		return y_position;
+	}
 }

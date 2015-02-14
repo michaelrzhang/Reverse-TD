@@ -1,4 +1,4 @@
-package shape;
+package src.shape;
 public class Circle{
 	double x_position;
 	double y_position;

@@ -1,6 +1,6 @@
-package tower;
-import shape.*;
-import creature.*;
+package src.tower;
+import src.shape.*;
+import src.creature.*;
 public abstract class Tower{
 	double x_position;
 	double y_position;
