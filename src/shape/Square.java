@@ -10,6 +10,7 @@ public class Square extends Shape{
 		y_position = y_pos;
 		apothem = radius;
 	}
+	
 	public void draw(){
 		StdDraw.setPenColor(StdDraw.RED);
 		StdDraw.filledSquare(x_position, y_position, apothem);

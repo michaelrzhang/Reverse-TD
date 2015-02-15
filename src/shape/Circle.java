@@ -9,5 +9,10 @@ public class Circle{
 		x_position = x_pos;
 		y_position = y_pos;
 		apothem = radius;
+
+
+	public void draw(){
+		StdDraw.setPenColor(StdDraw.BLUE);
+		StdDraw.filledCircle(x_position, y_position, apothem);
 	}
 }

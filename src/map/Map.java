@@ -12,6 +12,7 @@ public class Map{
 	Direction_Grid[] dGrid;
 	Creature[] creatures = new Creature[100]; 
 	int path_Width;
+
 	public Map(double[][] p, int n, int xMax, int yMax, int pWidth){
 		this.grid_Size = n;
 		this.path = p;
@@ -20,6 +21,7 @@ public class Map{
 		this.grid_Map = new Grid[this.grid_Size][this.grid_Size];
 		this.path_Width = pWidth;
 	}
+
 	public void initialize(){
 		for (int i = 0; i < grid_Size; i++){
 			for (int j = 0; j< grid_Size; j++){ 
@@ -35,17 +37,20 @@ public class Map{
 		int y = (int) (point[1] * grid_Size / yMax_val);
 		return grid_Map[x][y]; 
 	}
+
 	public Grid closestGrid(double x_pos, double y_pos){
 		int x = (int) (x_pos * grid_Size / xMax_val); 
 		int y = (int) (y_pos * grid_Size / yMax_val);
 		return grid_Map[x][y]; 		
 	}
+
 	public int[] closestGridCoordinate(double[] point){
 		int[] coordinate = new int[2];
 		coordinate[0] = (int) (point[0] * grid_Size / xMax_val); 
 		coordinate[1] = (int) (point[1] * grid_Size / yMax_val);
 		return coordinate;
 	} 
+	
 	public void initDirection(){
 		int[] prev;
 		int n = path.length;
