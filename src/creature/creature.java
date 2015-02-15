@@ -13,7 +13,7 @@ public abstract class Creature{
 	int cost;
 	int level;
 	Shape hit_box;
-	Direction_Grid grid;
+	Direction_Grid grid;  // grid is used to move correctly
 	Map map;
 	public Creature(double x_pos, double y_pos, Direction_Grid dg, Map m, String nm){
 		this.x_position = x_pos;

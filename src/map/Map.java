@@ -1,6 +1,8 @@
 package src.map;
+import java.util.*;
 import src.grid.*;
 import src.creature.*;
+import src.projectile.*;
 public class Map{
 	Grid[][] grid_Map;
 	int grid_Size;
@@ -11,6 +13,7 @@ public class Map{
 	End_Grid end; // where creature leave the map
 	Direction_Grid[] dGrid;
 	Creature[] creatures = new Creature[100]; 
+	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	int path_Width;
 
 	public Map(double[][] p, int n, int xMax, int yMax, int pWidth){
@@ -124,6 +127,12 @@ public class Map{
 		creatures[0] = null;
 		return c;
 	} // NEEDS TO BE WRITTEN
+
+	public Projectile remove(Projectile p){
+		projectiles.remove(p);
+		return p;
+	} 
+
 	public void initUI(){
 
 	}
@@ -150,11 +159,19 @@ public class Map{
 	public void addCreature(Creature c){
 		creatures[0] = c;
 	}
+
+	public void addProjectile(Projectile p){
+		projectiles.add(p);
+	}
+
 	public void action(double dt){
 		for (Creature c : creatures){
 			if(c != null){
 				c.action(dt);
 			}
+		}
+		for (Projectile p : projectiles){
+			p.action(dt);
 		}
 	}
 	public void draw(){
@@ -162,6 +179,9 @@ public class Map{
 			if(c != null){
 				c.draw();
 			}
+		}
+		for (Projectile p : projectiles){
+			p.draw();
 		}
 	}
 }

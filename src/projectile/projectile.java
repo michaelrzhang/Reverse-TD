@@ -1,4 +1,7 @@
-package projectile;
+package src.projectile;
+import src.shape.*;
+import src.map.*;
+import src.grid.*;
 public abstract class Projectile{
 	String name;
 	double x_velocity;
@@ -8,29 +11,30 @@ public abstract class Projectile{
 	double time_alive;
 	boolean honing;
 	Shape hit_box;
-	Direction_Grid grid;
 	Map map;
 
-	public Projectile(double x_pos, double y_pos, Direction_Grid dg, Map m, String name, boolean honing){
+	// potentially create a constructor based on tower launched from
+
+	public Projectile(String name, double x_velocity, double y_velocity, double x_pos, 
+		double y_pos, double time_alive, boolean honing, Shape hit_box, Map m){
+		this.name = name;
+		this.x_velocity = x_velocity;
+		this.y_velocity = y_velocity;
 		this.x_position = x_pos;
 		this.y_position = y_pos;
-		this.name = name;
-		this.grid = dg;
-		this.map = m;
-		this.grid.set_Creature(this);
+		this.time_alive = time_alive;
 		this.honing = honing;
-	}
-
-	public Projectile(Map m, String name){
+		this.hit_box = hit_box;
 		this.map = m;
-		this.name = name;
-		this.grid = m.get_start();
-		this.x_position = grid.get_x_position();
-		this.y_position = grid.get_y_position();
 	}
 
-	abstract void action(double dt);
-	abstract void draw();
+	public Projectile(String name, Map m){
+		this.name = name;
+		this.map = m;
+	}
+
+	public abstract void action(double dt);
+	public abstract void draw();
 	public double get_x_velocity(){
 		return x_velocity;
 	}

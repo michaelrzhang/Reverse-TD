@@ -1,6 +1,7 @@
 package src.test;
 import src.creature.*;
 import src.map.*;
+import src.projectile.*;
 import lib.*;
 import src.grid.*;
 public class BasicTest{
@@ -11,6 +12,7 @@ public class BasicTest{
 		Map m = new Map(path, 10, 10, 10, 1);
 		m.initialize();
 		m.addCreature(new Basic_Creature(m,"1Basic"));
+		m.addProjectile(new BasicProjectile("testprojectile", m));
 		while(true){
 			StdDraw.picture(5.0, 5.0, "images/background.jpg");
 			for (Direction_Grid g: m.get_dGrid()){
