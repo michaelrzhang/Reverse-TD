@@ -15,7 +15,7 @@ public class BasicTest{
 		m.addProjectile(new BasicProjectile("testprojectile", m));
 		while(true){
 			StdDraw.picture(5.0, 5.0, "images/background.jpg");
-			for (Direction_Grid g: m.get_dGrid()){
+			for (DirectionGrid g: m.get_dGrid()){
 				if (g != null){
 					g.setCreaturesDirection();
 				}

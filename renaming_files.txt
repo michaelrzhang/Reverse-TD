@@ -1,0 +1,4 @@
+git mv --force Direction_Grid.java DirectionGrid.java
+is how you change a file name and save the change
+
+We should switch to using no underscores in class names.

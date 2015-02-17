@@ -9,9 +9,9 @@ public class Map{
 	int xMax_val;
 	int yMax_val;
 	double[][] path;
-	Direction_Grid start; // where creatures enter
+	DirectionGrid start; // where creatures enter
 	End_Grid end; // where creature leave the map
-	Direction_Grid[] dGrid;
+	DirectionGrid[] dGrid;
 	Creature[] creatures = new Creature[100]; 
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	int path_Width;
@@ -31,7 +31,7 @@ public class Map{
 				this.grid_Map[i][j] = new Tower_Grid(xMax_val*(i+0.5)/grid_Size, yMax_val*(0.5 + j)/grid_Size, String.valueOf(i) + " x " + String.valueOf(j), this);
 			}
 		}
-		dGrid = new Direction_Grid[grid_Size*grid_Size];
+		dGrid = new DirectionGrid[grid_Size*grid_Size];
 		initDirection();
 	}
 
@@ -63,30 +63,30 @@ public class Map{
 			next = closestGridCoordinate(path[i+1]);
 			if (next[0]>prev[0]){
 				for (int k = prev[0]; k < next[0]; k++){
-					grid_Map[k][prev[1]] = new Direction_Grid(grid_Map[k][prev[1]], grid_Map[k+1][prev[1]]);
+					grid_Map[k][prev[1]] = new DirectionGrid(grid_Map[k][prev[1]], grid_Map[k+1][prev[1]]);
 					convertPath(k, prev[1], 0);
 				}
 			}
 			else if(next[0] < prev[0]){
 				for (int k = prev[0]; k > next[0]; k--){
-					grid_Map[k][prev[1]] = new Direction_Grid(grid_Map[k][prev[1]], grid_Map[k-1][prev[1]]);
+					grid_Map[k][prev[1]] = new DirectionGrid(grid_Map[k][prev[1]], grid_Map[k-1][prev[1]]);
 					convertPath(k, prev[1], 0);
 				}
 			}
 			if (next[1]>prev[1]){
 				for (int k = prev[1]; k < next[1]; k++){
-					grid_Map[prev[0]][k] = new Direction_Grid(grid_Map[prev[0]][k], grid_Map[prev[0]][k+1]);
+					grid_Map[prev[0]][k] = new DirectionGrid(grid_Map[prev[0]][k], grid_Map[prev[0]][k+1]);
 					convertPath(prev[0], k, 1);
 				}
 			}
 			else if(next[1]<prev[1]){
 				for (int k = prev[1]; k > next[1]; k--){
-					grid_Map[prev[0]][k] = new Direction_Grid(grid_Map[prev[0]][k], grid_Map[prev[0]][k-1]);
+					grid_Map[prev[0]][k] = new DirectionGrid(grid_Map[prev[0]][k], grid_Map[prev[0]][k-1]);
 					convertPath(prev[0], k, 1);
 				}
 			}
 		}
-		this.start = (Direction_Grid) closestGrid(path[0]);
+		this.start = (DirectionGrid) closestGrid(path[0]);
 		int[] ending = closestGridCoordinate(path[n-1]);
 		grid_Map[ending[0]][ending[1]] =  new End_Grid(closestGrid(path[n-1]));
 		this.end = (End_Grid) grid_Map[ending[0]][ending[1]];
@@ -136,7 +136,7 @@ public class Map{
 	public void initUI(){
 
 	}
-	public Direction_Grid get_start(){
+	public DirectionGrid get_start(){
 		return start;
 	}
 	public Grid[][] get_grid_map(){
@@ -147,13 +147,13 @@ public class Map{
 		for (Grid[] garray: grid_Map){
 			for (Grid g: garray){
 				if(g.type() == "Direction"){
-					dGrid[i] = (Direction_Grid) g;
+					dGrid[i] = (DirectionGrid) g;
 					i++;
 				}
 			}
 		}
 	}
-	public Direction_Grid[] get_dGrid(){
+	public DirectionGrid[] get_dGrid(){
 		return dGrid;
 	}
 	public void addCreature(Creature c){

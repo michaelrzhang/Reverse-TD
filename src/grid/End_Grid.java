@@ -1,7 +1,7 @@
 package src.grid;
 import src.map.*;
 import src.creature.*;
-public class End_Grid extends Direction_Grid{
+public class End_Grid extends DirectionGrid{
 
 	// public End_Grid(double x, double y,double xDirection, double yDirection, String nm, Map m){
 	// 	super(x, y, nm, m);

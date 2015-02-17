@@ -16,7 +16,7 @@ public class Basic_Creature extends Creature{
 		this.y_velocity = 0;
 	}
 
-	public Basic_Creature(double x_pos, double y_pos, Direction_Grid dg, Map m, String nm){
+	public Basic_Creature(double x_pos, double y_pos, DirectionGrid dg, Map m, String nm){
 		super(x_pos, y_pos, dg, m, nm);
 		this.hit_box = new Square(x_pos, y_pos, 0.5);
 		this.x_velocity = 1;
@@ -38,7 +38,7 @@ public class Basic_Creature extends Creature{
 		x_position += x_velocity * dt;
 		y_position += y_velocity * dt;
 		grid.remove_Creature(this);
-		grid = (Direction_Grid) map.closestGrid(x_position,y_position);  // grid is null here
+		grid = (DirectionGrid) map.closestGrid(x_position,y_position);  // grid is null here
 		grid.addCreature(this);
 	}
 	private void remove(){
