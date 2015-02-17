@@ -12,7 +12,7 @@ public class Map{
 	DirectionGrid start; // where creatures enter
 	End_Grid end; // where creature leave the map
 	DirectionGrid[] dGrid;
-	Creature[] creatures = new Creature[100]; 
+	ArrayList<Creature> creatures = new ArrayList<Creature>();
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	int path_Width;
 
@@ -124,7 +124,7 @@ public class Map{
 		}
 	}
 	public Creature remove(Creature c){
-		creatures[0] = null;
+		creatures.remove(c);
 		return c;
 	} // NEEDS TO BE WRITTEN
 
@@ -157,7 +157,7 @@ public class Map{
 		return dGrid;
 	}
 	public void addCreature(Creature c){
-		creatures[0] = c;
+		creatures.add(c);
 	}
 
 	public void addProjectile(Projectile p){
@@ -166,9 +166,7 @@ public class Map{
 
 	public void action(double dt){
 		for (Creature c : creatures){
-			if(c != null){
-				c.action(dt);
-			}
+			c.action(dt);
 		}
 		for (Projectile p : projectiles){
 			p.action(dt);
@@ -176,9 +174,7 @@ public class Map{
 	}
 	public void draw(){
 		for (Creature c : creatures){
-			if(c != null){
-				c.draw();
-			}
+			c.draw();
 		}
 		for (Projectile p : projectiles){
 			p.draw();

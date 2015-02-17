@@ -13,7 +13,7 @@ public class BasicProjectile extends Projectile{
 		this.x_position = 5;
 		this.y_position = 5;
 		this.time_alive = 5;
-		this.hit_box = new Circle(x_position, y_position, 0.5);
+		this.hit_box = new Circle(x_position, y_position, 0.3);
 		this.honing = false;
 	}
 	
