@@ -3,6 +3,7 @@ import java.util.*;
 import src.grid.*;
 import src.creature.*;
 import src.projectile.*;
+import src.tower.*;
 public class Map{
 	Grid[][] grid_Map;
 	int grid_Size;
@@ -14,6 +15,7 @@ public class Map{
 	DirectionGrid[] dGrid;
 	ArrayList<Creature> creatures = new ArrayList<Creature>();
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+	ArrayList<Tower> towers = new ArrayList<Tower>();
 	int path_Width;
 
 	public Map(double[][] p, int n, int xMax, int yMax, int pWidth){
@@ -133,6 +135,11 @@ public class Map{
 		return p;
 	} 
 
+	public Tower remove(Tower t){
+		towers.remove(t);
+		return t;
+	}
+
 	public void initUI(){
 
 	}
@@ -160,6 +167,10 @@ public class Map{
 		creatures.add(c);
 	}
 
+	public void addTower(Tower t){
+		towers.add(t);
+	}
+
 	public void addProjectile(Projectile p){
 		projectiles.add(p);
 	}
@@ -171,6 +182,10 @@ public class Map{
 		for (Projectile p : projectiles){
 			p.action(dt);
 		}
+		for (Tower t : towers){
+			t.action(dt);
+		}
+
 	}
 	public void draw(){
 		for (Creature c : creatures){
@@ -178,6 +193,9 @@ public class Map{
 		}
 		for (Projectile p : projectiles){
 			p.draw();
+		}
+		for (Tower t : towers){
+			t.draw();
 		}
 	}
 }

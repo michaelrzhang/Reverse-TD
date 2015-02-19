@@ -3,6 +3,10 @@ import src.shape.*;
 import src.creature.*;
 import src.map.*;
 public abstract class Tower{
+// THINGS TO ADD
+// firing projectiles constantly
+// honing
+// collision between projectiles
 	String name;
 	double x_position;
 	double y_position;
@@ -27,7 +31,7 @@ public abstract class Tower{
 		this.honing = honing;
 		this.cost = cost;
 		this.health = health;
-		this.map = m;
+		this.map = map;
 	}
 
 	public Tower(String name, Map m){
@@ -35,9 +39,11 @@ public abstract class Tower{
 		this.map = m;
 	}
 
-	abstract void level_up();
-	abstract void action(Creature[] creatures);
-	abstract void draw();
+	// abstract void level_up(); 
+	// abstract void action(Creature[] creatures);  IMPLEMENT for honing
+	// 
+	public abstract void action(double dt);
+	public abstract void draw();
 	
 	public double get_x_position(){
 		return x_position;

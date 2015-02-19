@@ -2,6 +2,7 @@ package src.test;
 import src.creature.*;
 import src.map.*;
 import src.projectile.*;
+import src.tower.*;
 import lib.*;
 import src.grid.*;
 public class BasicTest{
@@ -13,6 +14,7 @@ public class BasicTest{
 		m.initialize();
 		m.addCreature(new BasicCreature(m,"1Basic"));
 		m.addProjectile(new BasicProjectile("testprojectile", m));
+		m.addTower(new BasicTower("testtower", m));
 		while(true){
 			StdDraw.picture(5.0, 5.0, "images/background.jpg");
 			for (DirectionGrid g: m.get_dGrid()){

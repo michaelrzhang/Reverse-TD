@@ -15,4 +15,9 @@ public class Square extends Shape{
 		StdDraw.setPenColor(StdDraw.RED);
 		StdDraw.filledSquare(x_position, y_position, apothem);
 	}
+
+	public void drawTower(){
+		StdDraw.setPenColor(StdDraw.YELLOW);
+		StdDraw.filledSquare(x_position, y_position, apothem);
+	}
 }
