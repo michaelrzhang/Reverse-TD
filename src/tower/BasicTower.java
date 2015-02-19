@@ -3,14 +3,17 @@ import src.shape.*;
 import src.creature.*;
 import src.map.*;
 import src.grid.*;
+import src.projectile.*;
 
 public class BasicTower extends Tower{
-	// tower that fires nonhoming projectiles
+	// tower that fires nonhoning projectiles
+	public double fire_time = 0.1;
+	// tower that fires nonhoning projectiles
 	public BasicTower(String name, Map m){
 		super(name, m);
 		this.x_position = 3;
 		this.y_position = 3;
-		this.velocity = 2;
+		this.velocity = 4;
 		this.acceleration = 2;
 		this.time_alive = 5;
 		this.hit_box = new Square(x_position, y_position, 0.3);
@@ -20,12 +23,18 @@ public class BasicTower extends Tower{
 	}
 	
 	public void action(double dt){
-		// move(dt);
-		// time_alive -= dt;
-		// if (time_alive == 0){
-		// 	remove();
-		// }
+		fire_time -= dt;
+		if (fire_time < 0){
+			fire_time = 1;
+			shoot_projectile();
+		}
 		update_shape();
+	}
+
+	public void shoot_projectile(){
+		double actual_velocity = this.velocity / Math.sqrt(2);
+		map.addProjectile(new BasicProjectile("basic", actual_velocity, actual_velocity, x_position, y_position,
+			time_alive, false, new Circle(x_position, y_position, 0.3), map));
 	}
 	
 	public void draw(){
