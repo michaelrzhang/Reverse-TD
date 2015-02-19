@@ -3,20 +3,20 @@ import src.shape.*;
 import src.map.*;
 import src.grid.*;
 // import Color.*;
-public class Basic_Creature extends Creature{
+public class BasicCreature extends Creature{
 	int health = 1;
 	double time_alive = 0;
 	int cost = 1;
 	int level = 1;
 	// Color color = StdDraw.RED;
-	public Basic_Creature(Map m, String nm){
+	public BasicCreature(Map m, String nm){
 		super(m,nm);
 		this.hit_box = new Square(x_position, y_position, 0.5);
 		this.x_velocity = 20;
 		this.y_velocity = 0;
 	}
 
-	public Basic_Creature(double x_pos, double y_pos, DirectionGrid dg, Map m, String nm){
+	public BasicCreature(double x_pos, double y_pos, DirectionGrid dg, Map m, String nm){
 		super(x_pos, y_pos, dg, m, nm);
 		this.hit_box = new Square(x_pos, y_pos, 0.5);
 		this.x_velocity = 1;

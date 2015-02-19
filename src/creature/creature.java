@@ -2,7 +2,7 @@ package src.creature;
 import src.shape.*;
 import src.map.*;
 import src.grid.*;
-public abstract class Creature{
+public abstract class Creature{  // SHOULD THIS EXTE
 	String name;
 	int health;
 	double x_velocity;
