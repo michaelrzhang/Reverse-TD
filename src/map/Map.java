@@ -14,10 +14,10 @@ public class Map{
 	DirectionGrid start; // where creatures enter
 	EndGrid end; // where creature leave the map
 	ArrayList<DirectionGrid> dGrid = new ArrayList<DirectionGrid>();
-	ArrayList<Creature> creatures = new ArrayList<Creature>();
-	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
-	ArrayList<Tower> towers = new ArrayList<Tower>();
-	ArrayList<Actor> actors = new ArrayList<Actor>();
+	ArrayList<Creature> creatures = new ArrayList<Creature>(); // what happens when it gets huge tho???
+	ArrayList<Projectile> projectiles = new ArrayList<Projectile>(); // can be deleted
+	ArrayList<Tower> towers = new ArrayList<Tower>(); // these can be deleted
+	ArrayList<Actor> actors = new ArrayList<Actor>(); // active actors
 	ArrayList<Actor> queue = new ArrayList<Actor>(); // actors to be added next dt
 	int path_Width;
 
@@ -184,7 +184,7 @@ public class Map{
 	// }
 
 	public void addActor(Actor a){
-		queue.add(a);
+		queue.add(a); // cant be immediately added because then it causes problems when looping through the actors
 	}
 
 	public void unQueue(){
@@ -200,7 +200,7 @@ public class Map{
 	}
 
 	public void action(double dt){
-		unQueue(); // avoids concurent modification
+		unQueue(); // avoids concurent modification 
 		// for (Creature c : creatures){
 		// 	c.action(dt);
 		// }
