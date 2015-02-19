@@ -1,12 +1,12 @@
 package src.grid;
 import src.map.*;
 import src.creature.*;
-public class End_Grid extends DirectionGrid{
+public class EndGrid extends DirectionGrid{
 
 	// public End_Grid(double x, double y,double xDirection, double yDirection, String nm, Map m){
 	// 	super(x, y, nm, m);
 	// }
-	public End_Grid(Grid g){
+	public EndGrid(Grid g){
 		super(g, g);
 	}
 	public void setCreaturesDirection(){
