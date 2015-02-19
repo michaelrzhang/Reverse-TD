@@ -44,5 +44,14 @@ public abstract class Creature{  // SHOULD THIS EXTE
 	public void set_y_velocity(double y){
 		this.y_velocity = y;
 	}
+	public String buy(){
+		boolean can_buy = bank.withdraw(cost);
+		if (can_buy){
+			return "bought: " + name;
+		} 
+		else{
+			return "insufficient funds to buy: " + name;
+		}
+	}
 
 }
