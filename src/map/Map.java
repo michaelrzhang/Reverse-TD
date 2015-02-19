@@ -10,7 +10,7 @@ public class Map{
 	int yMax_val;
 	double[][] path;
 	DirectionGrid start; // where creatures enter
-	End_Grid end; // where creature leave the map
+	EndGrid end; // where creature leave the map
 	DirectionGrid[] dGrid;
 	ArrayList<Creature> creatures = new ArrayList<Creature>();
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
@@ -28,7 +28,7 @@ public class Map{
 	public void initialize(){
 		for (int i = 0; i < grid_Size; i++){
 			for (int j = 0; j< grid_Size; j++){ 
-				this.grid_Map[i][j] = new Tower_Grid(xMax_val*(i+0.5)/grid_Size, yMax_val*(0.5 + j)/grid_Size, String.valueOf(i) + " x " + String.valueOf(j), this);
+				this.grid_Map[i][j] = new TowerGrid(xMax_val*(i+0.5)/grid_Size, yMax_val*(0.5 + j)/grid_Size, String.valueOf(i) + " x " + String.valueOf(j), this);
 			}
 		}
 		dGrid = new DirectionGrid[grid_Size*grid_Size];
@@ -88,8 +88,8 @@ public class Map{
 		}
 		this.start = (DirectionGrid) closestGrid(path[0]);
 		int[] ending = closestGridCoordinate(path[n-1]);
-		grid_Map[ending[0]][ending[1]] =  new End_Grid(closestGrid(path[n-1]));
-		this.end = (End_Grid) grid_Map[ending[0]][ending[1]];
+		grid_Map[ending[0]][ending[1]] =  new EndGrid(closestGrid(path[n-1]));
+		this.end = (EndGrid) grid_Map[ending[0]][ending[1]];
 		this.start.setStart();
 		set_dGrid();
 	}
@@ -98,12 +98,12 @@ public class Map{
 			for (int j = 1; j < path_Width+1; j++){
 				if (a + j >= 0 && a + j < grid_Size){
 					if (grid_Map[a+j][b].type() != "Direction"){
-						grid_Map[a+j][b] = new Path_Grid(grid_Map[a+j][b]);
+						grid_Map[a+j][b] = new PathGrid(grid_Map[a+j][b]);
 					}
 				}
 				if (a-j >= 0 && a-j < grid_Size){
 					if (grid_Map[a-j][b].type() != "Direction"){
-						grid_Map[a-j][b] = new Path_Grid(grid_Map[a-j][b]);
+						grid_Map[a-j][b] = new PathGrid(grid_Map[a-j][b]);
 					}
 				}
 			}
@@ -112,12 +112,12 @@ public class Map{
 			for (int j = 1; j < path_Width+1; j++){
 				if (b+j >= 0 && b+j < grid_Size){
 					if (grid_Map[a][b+j].type() != "Direction"){
-						grid_Map[a][b+j] = new Path_Grid(grid_Map[a][b+j]);
+						grid_Map[a][b+j] = new PathGrid(grid_Map[a][b+j]);
 					}
 				}
 				if (b-j >= 0 && b-j < grid_Size){
 					if (grid_Map[a][b-j].type() != "Direction"){
-						grid_Map[a][b-j] = new Path_Grid(grid_Map[a][b-j]);
+						grid_Map[a][b-j] = new PathGrid(grid_Map[a][b-j]);
 					}
 				}
 			}
@@ -139,7 +139,7 @@ public class Map{
 	public DirectionGrid get_start(){
 		return start;
 	}
-	public Grid[][] get_grid_map(){
+	public Grid[][] get_Grid_map(){
 		return grid_Map;
 	}
 	public void set_dGrid(){

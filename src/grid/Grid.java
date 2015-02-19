@@ -8,7 +8,7 @@ public abstract class Grid{
 	Grid[] adjacent = new Grid[4]; // keeps track of what grids surround this grid  
 	Map map;
 	// Projectile[] projectiles;
-	public Grid(double x, double y,String nm, Map m){
+	public Grid(double x, double y, String nm, Map m){
 		this.x_position = x;
 		this.y_position = y;
 		this.name = nm;

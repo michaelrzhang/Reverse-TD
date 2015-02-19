@@ -1,7 +1,7 @@
 package src.grid;
 import src.creature.Creature;
 import src.map.Map;
-public class DirectionGrid extends Path_Grid{
+public class DirectionGrid extends PathGrid{
 	double x_direction; // unit vectors that give direction
 	double y_direction;
 	boolean isStart = false;

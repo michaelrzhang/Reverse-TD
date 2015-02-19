@@ -1,6 +1,7 @@
 package src.tower;
 import src.shape.*;
 import src.creature.*;
+import src.map.*;
 public abstract class Tower{
 	String name;
 	double x_position;
@@ -17,8 +18,8 @@ public abstract class Tower{
 	public Tower(String name, double x_position, double y_position, Shape hit_box, 
 		boolean honing, int cost, int health, Map map){
 		this.name = name;
-		this.x_position = x_pos;
-		this.y_position = y_pos;
+		this.x_position = x_position;
+		this.y_position = y_position;
 		this.velocity = velocity;
 		this.acceleration = acceleration;
 		this.time_alive = time_alive;
