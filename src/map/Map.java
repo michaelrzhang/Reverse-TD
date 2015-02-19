@@ -65,34 +65,40 @@ public class Map{
 			if (next[0]>prev[0]){
 				for (int k = prev[0]; k < next[0]; k++){
 					grid_Map[k][prev[1]] = new DirectionGrid(grid_Map[k][prev[1]], grid_Map[k+1][prev[1]]);
+					dGrid.add((DirectionGrid) grid_Map[k][prev[1]]);
 					convertPath(k, prev[1], 0);
 				}
 			}
 			else if(next[0] < prev[0]){
 				for (int k = prev[0]; k > next[0]; k--){
 					grid_Map[k][prev[1]] = new DirectionGrid(grid_Map[k][prev[1]], grid_Map[k-1][prev[1]]);
+					dGrid.add((DirectionGrid) grid_Map[k][prev[1]]);					
 					convertPath(k, prev[1], 0);
 				}
 			}
 			if (next[1]>prev[1]){
 				for (int k = prev[1]; k < next[1]; k++){
 					grid_Map[prev[0]][k] = new DirectionGrid(grid_Map[prev[0]][k], grid_Map[prev[0]][k+1]);
+					dGrid.add((DirectionGrid) grid_Map[prev[0]][k]);					
 					convertPath(prev[0], k, 1);
 				}
 			}
 			else if(next[1]<prev[1]){
 				for (int k = prev[1]; k > next[1]; k--){
 					grid_Map[prev[0]][k] = new DirectionGrid(grid_Map[prev[0]][k], grid_Map[prev[0]][k-1]);
+					dGrid.add((DirectionGrid) grid_Map[prev[0]][k]);
 					convertPath(prev[0], k, 1);
 				}
 			}
 		}
 		this.start = (DirectionGrid) closestGrid(path[0]);
 		int[] ending = closestGridCoordinate(path[n-1]);
-		grid_Map[ending[0]][ending[1]] =  new EndGrid(closestGrid(path[n-1]));
-		this.end = (EndGrid) grid_Map[ending[0]][ending[1]];
+		grid_Map[ending[0]][ending[1]] =  
+		end = new EndGrid(closestGrid(path[n-1]));
+		grid_Map[ending[0]][ending[1]] = end;
+		dGrid.add(end);
 		this.start.setStart();
-		set_dGrid();
+		// set_dGrid();
 	}
 	private void convertPath(int a, int b, int direction){ // direction = 1 is vertical direction = 0 is horizontal
 		if (direction == 1){ // vertical

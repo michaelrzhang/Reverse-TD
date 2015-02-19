@@ -22,7 +22,7 @@ public class BasicTest{
 			for (DirectionGrid g: dGrid){
 				g.setCreaturesDirection();
 			}
-			m.action(0.01);
+			m.action(0.001);
 			m.draw();
 			StdDraw.show(1);
 		}
