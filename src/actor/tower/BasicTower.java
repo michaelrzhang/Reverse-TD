@@ -38,11 +38,11 @@ public class BasicTower extends Tower{
 		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 0.1), 
 			map, actual_velocity, actual_velocity, false));
 		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 0.1), 
-			map, actual_velocity, actual_velocity, false));
+			map, -1*actual_velocity, actual_velocity, false));
 		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 0.1), 
-			map, actual_velocity, actual_velocity, false));
+			map, actual_velocity, -1*actual_velocity, false));
 		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 0.1), 
-			map, actual_velocity, actual_velocity, false));
+			map, -1*actual_velocity, -1*actual_velocity, false));
 	}
 	
 	public void draw(){
