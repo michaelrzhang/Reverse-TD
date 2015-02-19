@@ -1,6 +1,6 @@
-package UI;
-import shape.*;
-import creature.*;
+package src.UI;
+import src.shape.*;
+import src.creature.*;
 public abstract class UI{
 	double x_position;
 	double y_position;

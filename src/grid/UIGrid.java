@@ -1,9 +1,10 @@
 package src.grid;
-import UI.*;
+import src.UI.*;
+import src.map.*;
 public class UIGrid extends Grid{
 	UI ui; // what ui objects are on grid *ui should not overlap
-	public UIGrid(double x, double y,String nm){
-		super(x, y, nm);
+	public UIGrid(double x, double y,String nm, Map m){
+		super(x, y, nm, m);
 		this.can_place = false;
 	}
 	public String type(){

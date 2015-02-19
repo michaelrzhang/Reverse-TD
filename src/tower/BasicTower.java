@@ -5,7 +5,7 @@ import src.map.*;
 import src.grid.*;
 
 public class BasicTower extends Tower{
-	// tower that fires nonhoning projectiles
+	// tower that fires nonhoming projectiles
 	public BasicTower(String name, Map m){
 		super(name, m);
 		this.x_position = 3;

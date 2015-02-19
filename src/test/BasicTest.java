@@ -5,6 +5,7 @@ import src.projectile.*;
 import src.tower.*;
 import lib.*;
 import src.grid.*;
+import java.util.ArrayList;
 public class BasicTest{
 	public static void main(String[] args){
 		StdDraw.setXscale(0,10);
@@ -15,14 +16,13 @@ public class BasicTest{
 		m.addCreature(new BasicCreature(m,"1Basic"));
 		m.addProjectile(new BasicProjectile("testprojectile", m));
 		m.addTower(new BasicTower("testtower", m));
+		ArrayList<DirectionGrid> dGrid = m.get_dGrid();
 		while(true){
 			StdDraw.picture(5.0, 5.0, "images/background.jpg");
-			for (DirectionGrid g: m.get_dGrid()){
-				if (g != null){
-					g.setCreaturesDirection();
-				}
+			for (DirectionGrid g: dGrid){
+				g.setCreaturesDirection();
 			}
-			m.action(0.001);
+			m.action(0.01);
 			m.draw();
 			StdDraw.show(1);
 		}

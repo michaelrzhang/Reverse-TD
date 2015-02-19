@@ -1,5 +1,5 @@
 package src.map;
-import java.util.*;
+import java.util.ArrayList;
 import src.grid.*;
 import src.creature.*;
 import src.projectile.*;
@@ -12,7 +12,7 @@ public class Map{
 	double[][] path;
 	DirectionGrid start; // where creatures enter
 	EndGrid end; // where creature leave the map
-	DirectionGrid[] dGrid;
+	ArrayList<DirectionGrid> dGrid = new ArrayList<DirectionGrid>();
 	ArrayList<Creature> creatures = new ArrayList<Creature>();
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<Tower> towers = new ArrayList<Tower>();
@@ -33,7 +33,6 @@ public class Map{
 				this.grid_Map[i][j] = new TowerGrid(xMax_val*(i+0.5)/grid_Size, yMax_val*(0.5 + j)/grid_Size, String.valueOf(i) + " x " + String.valueOf(j), this);
 			}
 		}
-		dGrid = new DirectionGrid[grid_Size*grid_Size];
 		initDirection();
 	}
 
@@ -154,13 +153,13 @@ public class Map{
 		for (Grid[] garray: grid_Map){
 			for (Grid g: garray){
 				if(g.type() == "Direction"){
-					dGrid[i] = (DirectionGrid) g;
+					dGrid.add((DirectionGrid) g);
 					i++;
 				}
 			}
 		}
 	}
-	public DirectionGrid[] get_dGrid(){
+	public ArrayList<DirectionGrid> get_dGrid(){
 		return dGrid;
 	}
 	public void addCreature(Creature c){
