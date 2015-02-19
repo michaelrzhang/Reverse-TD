@@ -1,8 +1,8 @@
 package src.test;
-import src.creature.*;
+import src.actor.creature.*;
 import src.map.*;
-import src.projectile.*;
-import src.tower.*;
+import src.actor.projectile.*;
+import src.actor.tower.*;
 import lib.*;
 import src.grid.*;
 import java.util.ArrayList;
@@ -13,9 +13,9 @@ public class BasicTest{
 		double[][] path = {{1,1} ,{1,8}, {8,8}, {8,1}, {2,1}};
 		Map m = new Map(path, 10, 10, 10, 1);
 		m.initialize();
-		m.addCreature(new BasicCreature(m,"1Basic"));
-		m.addProjectile(new BasicProjectile("testprojectile", m));
-		m.addTower(new BasicTower("testtower", m));
+		m.addActor(new BasicCreature("testcreature", m));
+		m.addActor(new BasicProjectile("testprojectile", m));
+		m.addActor(new BasicTower("testtower", m));
 		ArrayList<DirectionGrid> dGrid = m.get_dGrid();
 		while(true){
 			StdDraw.picture(5.0, 5.0, "images/background.jpg");

@@ -1,5 +1,5 @@
 package src.grid;
-import src.creature.Creature;
+import src.actor.creature.*;
 import src.map.Map;
 public class DirectionGrid extends PathGrid{
 	double x_direction; // unit vectors that give direction

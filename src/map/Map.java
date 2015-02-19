@@ -1,9 +1,10 @@
 package src.map;
 import java.util.ArrayList;
 import src.grid.*;
-import src.creature.*;
-import src.projectile.*;
-import src.tower.*;
+import src.actor.*;
+import src.actor.creature.*;
+import src.actor.projectile.*;
+import src.actor.tower.*;
 public class Map{
 	Grid[][] grid_Map;
 	int grid_Size;
@@ -16,6 +17,8 @@ public class Map{
 	ArrayList<Creature> creatures = new ArrayList<Creature>();
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<Tower> towers = new ArrayList<Tower>();
+	ArrayList<Actor> actors = new ArrayList<Actor>();
+	ArrayList<Actor> queue = new ArrayList<Actor>(); // actors to be added next dt
 	int path_Width;
 
 	public Map(double[][] p, int n, int xMax, int yMax, int pWidth){
@@ -130,20 +133,20 @@ public class Map{
 			}
 		}
 	}
-	public Creature remove(Creature c){
-		creatures.remove(c);
-		return c;
-	} // NEEDS TO BE WRITTEN
+	// public Creature remove(Creature c){
+	// 	creatures.remove(c);
+	// 	return c;
+	// } // NEEDS TO BE WRITTEN
 
-	public Projectile remove(Projectile p){
-		projectiles.remove(p);
-		return p;
-	} 
+	// public Projectile remove(Projectile p){
+	// 	projectiles.remove(p);
+	// 	return p;
+	// } 
 
-	public Tower remove(Tower t){
-		towers.remove(t);
-		return t;
-	}
+	// public Tower remove(Tower t){
+	// 	towers.remove(t);
+	// 	return t;
+	// }
 
 	public void initUI(){
 
@@ -168,39 +171,62 @@ public class Map{
 	public ArrayList<DirectionGrid> get_dGrid(){
 		return dGrid;
 	}
-	public void addCreature(Creature c){
-		creatures.add(c);
+	// public void addCreature(Creature c){
+	// 	creatures.add(c);
+	// }
+
+	// public void addTower(Tower t){
+	// 	towers.add(t);
+	// }
+
+	// public void addProjectile(Projectile p){
+	// 	projectiles.add(p);
+	// }
+
+	public void addActor(Actor a){
+		queue.add(a);
 	}
 
-	public void addTower(Tower t){
-		towers.add(t);
+	public void unQueue(){
+		for (Actor a : queue){
+			actors.add(a);
+		}
+		queue = new ArrayList<Actor>();
 	}
 
-	public void addProjectile(Projectile p){
-		projectiles.add(p);
+	public Actor remove(Actor a){
+		actors.remove(a);
+		return a;
 	}
 
 	public void action(double dt){
-		for (Creature c : creatures){
-			c.action(dt);
-		}
-		for (Projectile p : projectiles){
-			p.action(dt);
-		}
-		for (Tower t : towers){
-			t.action(dt);
+		unQueue(); // avoids concurent modification
+		// for (Creature c : creatures){
+		// 	c.action(dt);
+		// }
+		// for (Projectile p : projectiles){
+		// 	p.action(dt);
+		// }
+		// for (Tower t : towers){
+		// 	t.action(dt);
+		// }
+		for (Actor a : actors){
+			a.action(dt);
 		}
 
 	}
 	public void draw(){
-		for (Creature c : creatures){
-			c.draw();
-		}
-		for (Projectile p : projectiles){
-			p.draw();
-		}
-		for (Tower t : towers){
-			t.draw();
+		// for (Creature c : creatures){
+		// 	c.draw();
+		// }
+		// for (Projectile p : projectiles){
+		// 	p.draw();
+		// }
+		// for (Tower t : towers){
+		// 	t.draw();
+		// }
+		for (Actor a: actors){
+			a.draw();
 		}
 	}
 }

@@ -2,7 +2,7 @@ package src.bank;
 public class Bank{ // not really sure what to call it 
 	public double cash;
 	public int player; // should always be 1==towers or 2==creatures
-	public Bank(int p, ){
+	public Bank(int p){
 		this.player = p;
 		this.cash = 0;
 	}
@@ -10,10 +10,10 @@ public class Bank{ // not really sure what to call it
 		this.player = p;
 		this.cash = cash;
 	}
-	public void Deposit(double c){
+	public void deposit(double c){
 		cash += c;
 	}
-	public boolean Withdraw(double c){
+	public boolean withdraw(double c){
 		if (c > cash){
 			return false;
 		}

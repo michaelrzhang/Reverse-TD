@@ -1,5 +1,5 @@
 package src.grid;
-import src.tower.*;
+import src.actor.tower.*;
 import src.map.*;
 public class TowerGrid extends Grid{
 	Tower tower; // what tower is on the grid *towers should not overlap 

@@ -1,6 +1,6 @@
 package src.grid;
 import src.map.*;
-import src.creature.*;
+import src.actor.creature.*;
 public class EndGrid extends DirectionGrid{
 
 	// public End_Grid(double x, double y,double xDirection, double yDirection, String nm, Map m){
