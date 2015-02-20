@@ -12,10 +12,10 @@ public class BasicTest{
 	boolean space = false;
 	public static void main(String[] args){
 		boolean[] key = {false, false};
-		StdDraw.setXscale(0,10);
-		StdDraw.setYscale(0,10);
-		double[][] path = {{1,0} ,{1,8}, {8,8}, {8,0}};
-		Map m = new Map(path, 10, 10, 10, 1);
+		StdDraw.setXscale(0,50);
+		StdDraw.setYscale(0,50);
+		double[][] path = {{1,0} ,{1,40}, {40,40}, {40,0}};
+		Map m = new Map(path, 50, 50, 50, 3);
 		m.initialize();
 		m.addActor(new BasicCreature("testcreature", m));
 		m.addActor(new BasicTower("testtower", m));
@@ -23,7 +23,7 @@ public class BasicTest{
 		Player player1 = new Player(1, m, new Bank(100));
 		Player player2 = new Player(2, m, new Bank(100));
 		while(true){
-			StdDraw.picture(5.0, 5.0, "images/background.jpg");
+			StdDraw.picture(25.0, 25.0, "images/background.jpg");
 			for (DirectionGrid g: dGrid){
 				g.setCreaturesDirection();
 			}
