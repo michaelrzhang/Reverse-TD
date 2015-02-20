@@ -19,7 +19,20 @@ public class BasicTower extends Tower{
 		this.time_alive = 5;
 		this.hit_box = new Square(x_position, y_position, 0.3);
 		this.honing = false;
-		this.cost = 0;
+		this.cost = 10;
+		this.health = 100;
+		this.next_fire_time = fire_time;
+	}
+	public BasicTower(String name, Map m, double x_position, double y_position){
+		super(name, m);
+		this.x_position = x_position;
+		this.y_position = y_position;
+		this.velocity = 4;
+		this.acceleration = 2;
+		this.time_alive = 5;
+		this.hit_box = new Square(x_position, y_position, 0.3);
+		this.honing = false;
+		this.cost = 10;
 		this.health = 100;
 		this.next_fire_time = fire_time;
 	}
