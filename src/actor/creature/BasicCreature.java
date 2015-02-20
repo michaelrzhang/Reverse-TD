@@ -2,14 +2,9 @@ package src.actor.creature;
 import src.shape.*;
 import src.map.*;
 import src.grid.*;
-// import Color.*;
 public class BasicCreature extends Creature{
 	// Color color = StdDraw.RED;
 	public BasicCreature(String name, Map map){
-		// super(name, map.get_start().get_x_position(), map.get_start().get_y_position(),
-		// new Square(x_position, y_position, 0.5), 1, 1, map);
-		// this.x_velocity = 20;
-		// this.y_velocity = 0;
 		super(name, map);
 		this.dg = map.get_start();
 		this.x_position = dg.get_x_position();
@@ -17,7 +12,7 @@ public class BasicCreature extends Creature{
 		this.hit_box = new Square(x_position, y_position, 0.5);
 		this.cost = 1;
 		this.health = 1;
-		this.x_velocity = 20;
+		this.x_velocity = 10;
 		this.y_velocity = 0;
 		
 	}

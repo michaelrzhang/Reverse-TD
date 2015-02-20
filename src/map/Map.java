@@ -14,9 +14,6 @@ public class Map{
 	DirectionGrid start; // where creatures enter
 	EndGrid end; // where creature leave the map
 	ArrayList<DirectionGrid> dGrid = new ArrayList<DirectionGrid>();
-	ArrayList<Creature> creatures = new ArrayList<Creature>(); // what happens when it gets huge tho???
-	ArrayList<Projectile> projectiles = new ArrayList<Projectile>(); // can be deleted
-	ArrayList<Tower> towers = new ArrayList<Tower>(); // these can be deleted
 	ArrayList<Actor> actors = new ArrayList<Actor>(); // active actors
 	ArrayList<Actor> queue = new ArrayList<Actor>(); // actors to be added next dt
 	int path_Width;
@@ -101,7 +98,6 @@ public class Map{
 		grid_Map[ending[0]][ending[1]] = end;
 		dGrid.add(end);
 		this.start.setStart();
-		// set_dGrid();
 	}
 	private void convertPath(int a, int b, int direction){ // direction = 1 is vertical direction = 0 is horizontal
 		if (direction == 1){ // vertical
@@ -133,20 +129,6 @@ public class Map{
 			}
 		}
 	}
-	// public Creature remove(Creature c){
-	// 	creatures.remove(c);
-	// 	return c;
-	// } // NEEDS TO BE WRITTEN
-
-	// public Projectile remove(Projectile p){
-	// 	projectiles.remove(p);
-	// 	return p;
-	// } 
-
-	// public Tower remove(Tower t){
-	// 	towers.remove(t);
-	// 	return t;
-	// }
 
 	public void initUI(){
 
@@ -171,17 +153,6 @@ public class Map{
 	public ArrayList<DirectionGrid> get_dGrid(){
 		return dGrid;
 	}
-	// public void addCreature(Creature c){
-	// 	creatures.add(c);
-	// }
-
-	// public void addTower(Tower t){
-	// 	towers.add(t);
-	// }
-
-	// public void addProjectile(Projectile p){
-	// 	projectiles.add(p);
-	// }
 
 	public void addActor(Actor a){
 		queue.add(a); // cant be immediately added because then it causes problems when looping through the actors
@@ -201,30 +172,12 @@ public class Map{
 
 	public void action(double dt){
 		unQueue(); // avoids concurent modification 
-		// for (Creature c : creatures){
-		// 	c.action(dt);
-		// }
-		// for (Projectile p : projectiles){
-		// 	p.action(dt);
-		// }
-		// for (Tower t : towers){
-		// 	t.action(dt);
-		// }
 		for (Actor a : actors){
 			a.action(dt);
 		}
 
 	}
 	public void draw(){
-		// for (Creature c : creatures){
-		// 	c.draw();
-		// }
-		// for (Projectile p : projectiles){
-		// 	p.draw();
-		// }
-		// for (Tower t : towers){
-		// 	t.draw();
-		// }
 		for (Actor a: actors){
 			a.draw();
 		}
