@@ -26,14 +26,15 @@ public abstract class Actor{
 		this.map = map;
 	}
 	public abstract void action(double dt);
-	public String buy(){
-		boolean can_buy = bank.withdraw(cost);
-		if (can_buy){
-			return "bought: " + name;
-		} 
-		else{
-			return "insufficient funds to buy: " + name;
-		}
+	public boolean buy(){
+		return bank.withdraw(cost);
+		// boolean can_buy = bank.withdraw(cost);
+		// if (can_buy){
+		// 	return "bought: " + name;
+		// } 
+		// else{
+		// 	return "insufficient funds to buy: " + name;
+		// }
 	}
 	public void draw(){
 		hit_box.draw();

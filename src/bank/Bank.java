@@ -1,13 +1,14 @@
 package src.bank;
+import src.player.*;
 public class Bank{ // not really sure what to call it 
 	public double cash;
-	public int player; // should always be 1==towers or 2==creatures
-	public Bank(int p){
-		this.player = p;
+	public Player player; // should always be 1==towers or 2==creatures
+	public Bank(){
+		// this.player = p;
 		this.cash = 0;
 	}
-	public Bank(int p, double cash){
-		this.player = p;
+	public Bank(double cash){
+		// this.player = p;
 		this.cash = cash;
 	}
 	public void deposit(double c){
@@ -25,7 +26,7 @@ public class Bank{ // not really sure what to call it
 	public double getCash(){
 		return cash;
 	}
-	public int getPlayer(){
-		return player;
-	}
+	// public int getPlayer(){
+	// 	return player;
+	// }
 }

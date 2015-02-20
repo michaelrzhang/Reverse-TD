@@ -2,7 +2,6 @@ package src.actor.projectile;
 import src.shape.*;
 import src.map.*;
 import src.grid.*;
-// import Color.*;
 public class BasicProjectile extends Projectile{
 	
 	// mostly for testing purposes

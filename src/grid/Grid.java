@@ -27,4 +27,7 @@ public abstract class Grid{
 	public double get_y_position(){
 		return y_position;
 	}
+	public boolean can_place(){
+		return can_place;
+	}
 }
