@@ -148,7 +148,7 @@ public class Map{
 
 	public void initUI(){
 		for (UI u : ui){
-
+			convertUIGrid(u);
 		}
 	}
 	public DirectionGrid get_start(){
@@ -210,26 +210,25 @@ public class Map{
 
 	}
 
-	public void convertUIGrid(double x, double y, double xlen, double ylen, UI u){
-		double x = 
-		double y 
-		double xlen
-		double ylen
-		int[] topleft = closestGridCoordinate(x,y);
-		int a = topleft[0];
-		int b = topleft[1];
-		int width = (int) (xlen/xScale);
-		int height = (int) (ylen/yScale);
+	public void convertUIGrid(UI u){
+		int[] bottomleft = closestGridCoordinate(u.get_x_position(),u.get_y_position());
+		int a = bottomleft[0];
+		int b = bottomleft[1];
+		int width = (int) (u.get_xlength()/xScale);
+		int height = (int) (u.get_ylength()/yScale);
+		UIGrid[][] uigrid = new UIGrid[width+1][height+1];
 		for (int i = 0; i <= width; i++){
 			for(int j = 0; j <= height; j++){
-				if (checkCoordinate(a+i,b-j)){
-					grid_Map[a+i][b-j] = new UIGrid(grid_Map[a+i][b-j], u);
+				if (checkCoordinate(a+i,b+j)){
+					grid_Map[a+i][b+j] = new UIGrid(grid_Map[a+i][b+j], u);
+					uigrid[i][j] = (UIGrid) grid_Map[a+i][b+j];
 				}
 			}
 		}
+		u.set_uigrid(uigrid);
 	}
 	public boolean checkCoordinate(int x, int y){
-		if (x>grid_Size || x < 0 || y > grid_Size || y<0){
+		if (x>=grid_Size || x < 0 || y >=grid_Size || y<0){
 			return false;
 		}
 		return true;
@@ -238,6 +237,9 @@ public class Map{
 	public void draw(){
 		for (Actor a: actors){
 			a.draw();
+		}
+		for (UI u: ui){
+			u.draw();
 		}
 	}
 }

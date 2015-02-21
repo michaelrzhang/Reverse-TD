@@ -7,6 +7,7 @@ import lib.*;
 import src.grid.*;
 import src.player.*;
 import src.bank.*;
+import src.UI.*;
 import java.util.ArrayList;
 public class BasicTest{
 	boolean space = false;
@@ -14,8 +15,10 @@ public class BasicTest{
 		boolean[] key = {false, false};
 		StdDraw.setXscale(0,50);
 		StdDraw.setYscale(0,50);
-		double[][] path = {{1,0} ,{1,40}, {40,40}, {40,0}};
-		Map m = new Map(path, 50, 50, 50, 3);
+		double[][] path = {{1,0} ,{1,49}};
+		ArrayList<UI> ui = new ArrayList<UI>();
+		ui.add(new CreatureUI(25.0, 0.0, 10.0,10.0));
+		Map m = new Map(path, 50, 50, 50, 3, ui);
 		m.initialize();
 		m.addActor(new BasicCreature("testcreature", m));
 		m.addActor(new BasicTower("testtower", m));
