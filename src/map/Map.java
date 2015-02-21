@@ -5,11 +5,14 @@ import src.actor.*;
 import src.actor.creature.*;
 import src.actor.projectile.*;
 import src.actor.tower.*;
+import src.UI.*;
 public class Map{
 	Grid[][] grid_Map;
 	int grid_Size;
 	int xMax_val;
 	int yMax_val;
+	double xScale;
+	double yScale;
 	double[][] path;
 	DirectionGrid start; // where creatures enter
 	EndGrid end; // where creature leave the map
@@ -17,12 +20,15 @@ public class Map{
 	ArrayList<Actor> actors = new ArrayList<Actor>(); // active actors
 	ArrayList<Actor> queue = new ArrayList<Actor>(); // actors to be added next dt
 	int path_Width;
+	ArrayList<UI> ui = new ArrayList<UI>();
 
 	public Map(double[][] p, int n, int xMax, int yMax, int pWidth){
 		this.grid_Size = n;
 		this.path = p;
 		this.xMax_val = xMax;
 		this.yMax_val = yMax;
+		this.xScale = (0.0 + xMax_val)/grid_Size;
+		this.yScale = (0.0 + yMax_val)/grid_Size;
 		this.grid_Map = new Grid[this.grid_Size][this.grid_Size];
 		this.path_Width = pWidth;
 	}
@@ -53,7 +59,14 @@ public class Map{
 		coordinate[0] = (int) (point[0] * grid_Size / xMax_val); 
 		coordinate[1] = (int) (point[1] * grid_Size / yMax_val);
 		return coordinate;
-	} 
+	}
+	public int[] closestGridCoordinate(double x, double y){
+		int[] coordinate = new int[2];
+		coordinate[0] = (int) (x * grid_Size / xMax_val); 
+		coordinate[1] = (int) (y * grid_Size / yMax_val);
+		return coordinate;
+	}
+
 	
 	public void initDirection(){
 		int[] prev;
@@ -153,9 +166,19 @@ public class Map{
 	public ArrayList<DirectionGrid> get_dGrid(){
 		return dGrid;
 	}
-
+	// public void convertTowerGrid(TowerGrid[][] tg){
+	// 	for (TowerGrid[] towergrid: tg){
+	// 		for (TowerGrid g: tg){
+	// 			g.set_canPlace(false);
+	// 		}
+	// 	}
+	// }
 	public void addActor(Actor a){
 		queue.add(a); // cant be immediately added because then it causes problems when looping through the actors
+	}
+
+	public void addTower(Tower t){
+		queue.add(t);
 	}
 
 	public void unQueue(){
@@ -177,6 +200,28 @@ public class Map{
 		}
 
 	}
+
+	public void convertUIGrid(double x, double y, double xlen, double ylen){
+		int[] topleft = closestGridCoordinate(x,y);
+		int a = topleft[0];
+		int b = topleft[1];
+		int width = (int) (xlen/xScale);
+		int height = (int) (ylen/yScale);
+		for (int i = 0; i <= width; i++){
+			for(int j = 0; j <= height; j++){
+				if (checkCoordinate(a+i,b-j)){
+					grid_Map[a+i][b-j] = new UIGrid(grid_Map[a+i][b-j]);
+				}
+			}
+		}
+	}
+	public boolean checkCoordinate(int x, int y){
+		if (x>grid_Size || x < 0 || y > grid_Size || y<0){
+			return false;
+		}
+		return true;
+	}
+
 	public void draw(){
 		for (Actor a: actors){
 			a.draw();

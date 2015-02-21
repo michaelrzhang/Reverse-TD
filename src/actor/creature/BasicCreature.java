@@ -4,6 +4,7 @@ import src.map.*;
 import src.grid.*;
 public class BasicCreature extends Creature{
 	// Color color = StdDraw.RED;
+	Shape BasicShape = new Square(0.5);
 	public BasicCreature(String name, Map map){
 		super(name, map);
 		this.dg = map.get_start();
@@ -21,6 +22,13 @@ public class BasicCreature extends Creature{
 		super(name, x_position, y_position, new Square(x_position, y_position, 0.5), 1, 1, map, 1.0, 1.0, dg);
 	}
 	
+	public BasicCreature(String name){
+		super(name);
+		this.cost = 1;
+		this.health = 1;
+		this.hit_box = new Square(0.5);
+	}
+
 	public void action(double dt){
 		move(dt);
 		time_alive += dt;
