@@ -2,31 +2,40 @@ package src.actor.creature;
 import src.shape.*;
 import src.map.*;
 import src.grid.*;
+import src.player.*;
 public class FastCreature extends Creature{
 	// Color color = StdDraw.RED;
-	Shape BasicShape = new Square(0.5);
 	public FastCreature(String name, Map map){
 		super(name, map);
 		this.dg = map.get_start();
 		this.x_position = dg.get_x_position();
 		this.y_position = dg.get_y_position();
-		this.hit_box = new Square(x_position, y_position, 0.5);
-		this.cost = 2;
-		this.health = 2;
-		this.x_velocity = 10;
-		this.y_velocity = 0;
-		
+		hit_box = new Square(0.5);
+		cost = 2;
+		health = 2;
+		x_velocity = 10;
+		y_velocity = 0;
 	}
 
 	public FastCreature(String name, double x_position, double y_position, Map map, DirectionGrid dg){
 		super(name, x_position, y_position, new Square(x_position, y_position, 0.5), 1, 1, map, 1.0, 1.0, dg);
+		hit_box = new Square(0.5);
+		cost = 2;
+		health = 2;
+		x_velocity = 10;
+		y_velocity = 0;
 	}
 	
 	public FastCreature(String name){
 		super(name);
-		this.cost = 1;
-		this.health = 1;
-		this.hit_box = new Square(0.5);
+		hit_box = new Square(0.5);
+		cost = 2;
+		health = 2;
+		x_velocity = 10;
+		y_velocity = 0;
+	}
+	public void copy(Player p){
+		p.buyActor(new FastCreature("testcreature", p.map));
 	}
 
 	public void action(double dt){

@@ -5,13 +5,14 @@ import src.map.*;
 import lib.*;
 import src.grid.*;
 public class CreatureUI extends UI{
-	Creature[] CreatureInfo = new Creature[1];
+	Creature[] CreatureInfo = new Creature[2];
 	int index = 0;
 	UIGrid[][] uigrid;
 	public CreatureUI(double x_position, double y_position, 
 		double xlength, double ylength){
 		super(x_position, y_position, xlength, ylength, "Creatures");
 		CreatureInfo[0] = new BasicCreature("Basic Creature");
+		CreatureInfo[1] = new FastCreature("Fast Creature");
 		for (Creature c : CreatureInfo){
 			c.hit_box.set_X(x_position + xlength/3);
 			c.hit_box.set_Y(y_position + ylength*(2.0/3));
@@ -30,6 +31,9 @@ public class CreatureUI extends UI{
 		if (index + n >= 0 && index + n < CreatureInfo.length){
 			index += n;
 		}
+	}
+	public Creature get_Creature(){
+		return CreatureInfo[index];
 	}
 
 }

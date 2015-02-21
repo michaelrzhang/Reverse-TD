@@ -3,6 +3,7 @@ import src.actor.*;
 import src.shape.*;
 import src.map.*;
 import src.grid.*;
+import src.player.*;
 public abstract class Creature extends Actor{  // SHOULD THIS EXTE
 	DirectionGrid dg;
 	double x_velocity;
@@ -15,6 +16,7 @@ public abstract class Creature extends Actor{  // SHOULD THIS EXTE
 		super(name, x_position, y_position, hit_box, cost, health, map);
 		this.dg = dg;
 	}
+	public abstract void copy(Player p);
 	public Creature(String name, Map map){
 		super(name, map);
 	}
