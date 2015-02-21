@@ -18,6 +18,7 @@ public class Map{
 	EndGrid end; // where creature leave the map
 	ArrayList<DirectionGrid> dGrid = new ArrayList<DirectionGrid>();
 	ArrayList<Actor> actors = new ArrayList<Actor>(); // active actors
+	ArrayList<Creature> creatures = new ArrayList<Creature>(); // active creatures
 	ArrayList<Actor> queue = new ArrayList<Actor>(); // actors to be added next dt
 	int path_Width;
 	ArrayList<UI> ui = new ArrayList<UI>();
@@ -175,6 +176,13 @@ public class Map{
 	// }
 	public void addActor(Actor a){
 		queue.add(a); // cant be immediately added because then it causes problems when looping through the actors
+		if (a instanceof Creature){
+			addCreature((Creature) a);
+		}
+	}
+
+	public void addCreature(Creature c){
+		creatures.add(c);
 	}
 
 	public void addTower(Tower t){
@@ -190,6 +198,9 @@ public class Map{
 
 	public Actor remove(Actor a){
 		actors.remove(a);
+		if (a instanceof Creature){
+			creatures.remove((Creature) a);
+		}
 		return a;
 	}
 
