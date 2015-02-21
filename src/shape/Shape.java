@@ -1,11 +1,14 @@
 package src.shape;
-public abstract class Shape{
+public class Shape{
 	// SHOULD TEST/CONSIDER IMPROVEMENTs to overlap
 	// Generic polygon class?
 	double x_position;  // these should be the coordinates of the center
 	double y_position;
 	double apothem;
 	String name;
+
+	public Shape(){
+	}
 
 	/**
 	 * Returns whether or not two shapes overlap
@@ -49,11 +52,12 @@ public abstract class Shape{
 		double delta_y = a.y_position - b.y_position;
 		return Math.sqrt(delta_x * delta_x + delta_y * delta_y);
 	}
-	public void set_X(double x){
+	public void setX(double x){
 		this.x_position = x;
 	}
-	public void set_Y(double y){
+	public void setY(double y){
 		this.y_position = y;
 	}
-	public abstract void draw();
+	public void draw(){
+	}
 }

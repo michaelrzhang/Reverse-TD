@@ -3,12 +3,14 @@ package src.shape;
 import lib.*;
 public class Square extends Shape{
 	// To-do Nonstatic method for overlap
-	String name = "square";
+	public Square(){
+	}
 	
 	public Square(double x_pos, double y_pos, double radius){
 		x_position = x_pos;
 		y_position = y_pos;
 		apothem = radius;
+		name = "square";
 	}
 	
 	public void draw(){
