@@ -5,20 +5,13 @@ import src.map.*;
 import lib.*;
 public class CreatureDisplay extends UI{
 	Creature[] CreatureInfo = new Creature[1];
+	CreatureInfo[0] = new BasicCreature("Basic Creature");
 	int index = 0;
 	UIGrid[][] uigrid;
 	public CreatureUI(Map map, double x_position, double y_position, 
 		double xlength, double ylength){
-		this.uigrid = uigrid;
-		this.x_position = x_position;
-		this.y_position = y_position;
-		this.xlength = xlength;
-		this.ylength = ylength;
+		super(map, x_position, y_position, xlength, ylength, "Creatures");
 	} 
-	public CreatureDisplay(double x_position, double y_position){
-		super(x_position, y_position);
-		CreatureInfo[0] = new BasicCreature("Basic Creature");
-	}
 	public void display(){
 		Creature c = CreatureInfo[index];
 		c.getShape.draw();
