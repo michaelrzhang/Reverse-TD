@@ -34,4 +34,7 @@ public abstract class Creature extends Actor{  // SHOULD THIS EXTE
 		this.y_velocity = y;
 	}
 	public void select(){}
+	public double get_velocity(){
+		return Math.sqrt(x_velocity*x_velocity + y_velocity*y_velocity);
+	}
 }

@@ -22,9 +22,9 @@ public class CreatureUI extends UI{
 		c.hit_box.draw();
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.text(x_position + xlength/4, y_position + ylength,"Creature: " + c.name);
-		StdDraw.text(x_position + xlength/4, y_position + ylength/4,"Health: " + String.valueOf(c.health));
-		StdDraw.text(x_position + xlength/4, y_position + 1,"Cost: " + String.valueOf(c.cost));
-
+		StdDraw.text(x_position + xlength/4, y_position + ylength*(3.0/4),"Health: " + String.valueOf(c.health));
+		StdDraw.text(x_position + xlength/4, y_position + ylength*(1.0/2),"Cost: " + String.valueOf(c.cost));
+		StdDraw.text(x_position + xlength/4, y_position + ylength*(1.0/4),"Velocity: " + String.valueOf(c.get_velocity())); 
 	}
 	public void change(int n){
 		if (index + n >= 0 && index + n < CreatureInfo.length){
