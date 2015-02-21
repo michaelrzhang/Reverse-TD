@@ -22,7 +22,7 @@ public class Map{
 	int path_Width;
 	ArrayList<UI> ui = new ArrayList<UI>();
 
-	public Map(double[][] p, int n, int xMax, int yMax, int pWidth){
+	public Map(double[][] p, int n, int xMax, int yMax, int pWidth, ArrayList<UI> ui){
 		this.grid_Size = n;
 		this.path = p;
 		this.xMax_val = xMax;
@@ -31,6 +31,7 @@ public class Map{
 		this.yScale = (0.0 + yMax_val)/grid_Size;
 		this.grid_Map = new Grid[this.grid_Size][this.grid_Size];
 		this.path_Width = pWidth;
+		this.ui = ui;
 	}
 
 	public void initialize(){
@@ -40,6 +41,7 @@ public class Map{
 			}
 		}
 		initDirection();
+		initUI();
 	}
 
 	public Grid closestGrid(double[] point){
@@ -144,7 +146,9 @@ public class Map{
 	}
 
 	public void initUI(){
+		for (UI u : ui){
 
+		}
 	}
 	public DirectionGrid get_start(){
 		return start;
@@ -166,13 +170,7 @@ public class Map{
 	public ArrayList<DirectionGrid> get_dGrid(){
 		return dGrid;
 	}
-	// public void convertTowerGrid(TowerGrid[][] tg){
-	// 	for (TowerGrid[] towergrid: tg){
-	// 		for (TowerGrid g: tg){
-	// 			g.set_canPlace(false);
-	// 		}
-	// 	}
-	// }
+
 	public void addActor(Actor a){
 		queue.add(a); // cant be immediately added because then it causes problems when looping through the actors
 	}
@@ -201,7 +199,11 @@ public class Map{
 
 	}
 
-	public void convertUIGrid(double x, double y, double xlen, double ylen){
+	public void convertUIGrid(double x, double y, double xlen, double ylen, UI u){
+		double x = 
+		double y 
+		double xlen
+		double ylen
 		int[] topleft = closestGridCoordinate(x,y);
 		int a = topleft[0];
 		int b = topleft[1];
@@ -210,7 +212,7 @@ public class Map{
 		for (int i = 0; i <= width; i++){
 			for(int j = 0; j <= height; j++){
 				if (checkCoordinate(a+i,b-j)){
-					grid_Map[a+i][b-j] = new UIGrid(grid_Map[a+i][b-j]);
+					grid_Map[a+i][b-j] = new UIGrid(grid_Map[a+i][b-j], u);
 				}
 			}
 		}
