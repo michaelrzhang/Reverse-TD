@@ -3,7 +3,8 @@ package src.shape;
 import lib.*;
 public class Square extends Shape{
 	// To-do Nonstatic method for overlap
-	public Square(){
+	public Square(double apothem){
+		super(apothem);
 	}
 	
 	public Square(double x_pos, double y_pos, double radius){
@@ -15,6 +16,11 @@ public class Square extends Shape{
 	
 	public void draw(){
 		StdDraw.setPenColor(StdDraw.RED);
+		StdDraw.filledSquare(x_position, y_position, apothem);
+	}
+
+	public void draw(String color){
+		super.setColor(color);
 		StdDraw.filledSquare(x_position, y_position, apothem);
 	}
 
