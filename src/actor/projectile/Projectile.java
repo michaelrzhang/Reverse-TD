@@ -35,5 +35,5 @@ public abstract class Projectile extends Actor{
 	public void set_y_velocity(double y){
 		this.y_velocity = y;
 	}
-
+	public void select(){}
 }

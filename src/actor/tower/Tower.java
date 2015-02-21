@@ -10,10 +10,10 @@ public abstract class Tower extends Actor{
 	double acceleration; // acceleration of projectiles fired
 	double time_alive; // how long projectiles fired last for 
 	boolean honing;
-	TowerGrid[] tg;
+	TowerGrid[][] tg;
 
 	public Tower(String name, double x_position, double y_position, Shape hit_box, 
-		int cost, int health, Map map, TowerGrid[] tg, boolean honing, double acceleration){
+		int cost, int health, Map map, TowerGrid[][] tg, boolean honing, double acceleration){
 		super(name, x_position, y_position, hit_box, cost, health, map);
 		this.velocity = velocity;
 		this.acceleration = acceleration;
@@ -41,4 +41,5 @@ public abstract class Tower extends Actor{
 	public void set_y_position(double y){
 		this.y_position = y;
 	}
+	public void select(){}
 }

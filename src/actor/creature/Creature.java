@@ -18,6 +18,9 @@ public abstract class Creature extends Actor{  // SHOULD THIS EXTE
 	public Creature(String name, Map map){
 		super(name, map);
 	}
+	public Creature(String name){
+		super(name);
+	}
 	public double get_x_velocity(){
 		return x_velocity;
 	}
@@ -30,4 +33,5 @@ public abstract class Creature extends Actor{  // SHOULD THIS EXTE
 	public void set_y_velocity(double y){
 		this.y_velocity = y;
 	}
+	public void select(){}
 }
