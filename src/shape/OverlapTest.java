@@ -18,6 +18,9 @@ public class OverlapTest{
         c1 = new Circle(2,2,2);
         c2 = new Circle(6.01,6.01,2);
         assertEquals(false, Shape.overlaps(c1, c2));
+        c1 = new Circle(6.01,6.01,2);
+        c2 = new Circle(2,2,2);
+        assertEquals(false, Shape.overlaps(c1, c2));
     }
 
     @Test

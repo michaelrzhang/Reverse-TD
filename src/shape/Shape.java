@@ -3,7 +3,7 @@ package src.shape;
 import java.awt.Color;
 import lib.*;
 
-public class Shape{
+public abstract class Shape{
 	// SHOULD TEST/CONSIDER IMPROVEMENTs to overlap
 	// Generic polygon class?
 	double x_position;  // these should be the coordinates of the center
@@ -11,7 +11,12 @@ public class Shape{
 	double apothem;
 	String name;
 
+	// no argument constructor (so that it will compile)
 	public Shape(){
+	}
+
+	public Shape(double apothem){
+		this.apothem = apothem;
 	}
 
 	/**
