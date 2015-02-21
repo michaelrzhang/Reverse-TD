@@ -11,7 +11,7 @@ public class BasicProjectile extends Projectile{
 		this.y_velocity = 5;
 		this.x_position = 5;
 		this.y_position = 5;
-		this.time_alive = 5;
+		this.time_alive = 1;
 		this.hit_box = new Circle(x_position, y_position, 0.3);
 		this.honing = false;
 	}
@@ -24,8 +24,8 @@ public class BasicProjectile extends Projectile{
 	public void action(double dt){
 		move(dt);
 		time_alive -= dt;
-		if (time_alive == 0){
-			remove();
+		if (time_alive <= 0){
+			// remove();
 		}
 		update_shape();
 	}
