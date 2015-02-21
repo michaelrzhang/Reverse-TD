@@ -61,12 +61,16 @@ public abstract class Shape{
 		double delta_y = a.y_position - b.y_position;
 		return Math.sqrt(delta_x * delta_x + delta_y * delta_y);
 	}
-	public void setX(double x){
+	public void set_X(double x){
 		this.x_position = x;
 	}
-	public void setY(double y){
+	public void set_Y(double y){
 		this.y_position = y;
 	}
+
+	public void draw(){
+	}
+
 	public void setColor(String color){
 		if (color.equals("red"))
 			StdDraw.setPenColor(new Color(255,   0,   0));   // red
