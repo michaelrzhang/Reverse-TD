@@ -47,6 +47,9 @@ public class OverlapTest{
         s1 = new Square(0, 0, 2);
         c1 = new Circle(5, 5, 3.0001);
         assertEquals(true, Shape.overlaps(s1, c1));
+        s1 = new Square(0,0,2);
+        c1 = new Circle(0, 100, 2);
+        assertFalse(Shape.overlaps(s1, c1));
     }
 
 

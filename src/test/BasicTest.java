@@ -20,8 +20,6 @@ public class BasicTest{
 		ui.add(new CreatureUI(25.0, 0.0, 10.0,10.0));
 		Map m = new Map(path, 50, 50, 50, 3, ui);
 		m.initialize();
-		m.addActor(new BasicCreature("testcreature", m));
-		m.addActor(new BasicTower("testtower", m));
 		ArrayList<DirectionGrid> dGrid = m.get_dGrid();
 		Player player1 = new Player(1, m, new Bank(100));
 		Player player2 = new Player(2, m, new Bank(100));

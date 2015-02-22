@@ -10,7 +10,7 @@ public class FastCreature extends Creature{
 		this.dg = map.get_start();
 		this.x_position = dg.get_x_position();
 		this.y_position = dg.get_y_position();
-		hit_box = new Square(0.5);
+		hit_box = new Square(x_position, y_position, 0.5);
 		cost = 2;
 		health = 2;
 		x_velocity = 10;
@@ -19,7 +19,7 @@ public class FastCreature extends Creature{
 
 	public FastCreature(String name, double x_position, double y_position, Map map, DirectionGrid dg){
 		super(name, x_position, y_position, new Square(x_position, y_position, 0.5), 1, 1, map, 1.0, 1.0, dg);
-		hit_box = new Square(0.5);
+		hit_box = new Square(x_position, y_position, 0.5);
 		cost = 2;
 		health = 2;
 		x_velocity = 10;
@@ -28,7 +28,7 @@ public class FastCreature extends Creature{
 	
 	public FastCreature(String name){
 		super(name);
-		hit_box = new Square(0.5);
+		hit_box = new Square(x_position, y_position, 0.5);
 		cost = 2;
 		health = 2;
 		x_velocity = 10;
