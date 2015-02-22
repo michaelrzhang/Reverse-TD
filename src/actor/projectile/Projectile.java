@@ -28,7 +28,7 @@ public abstract class Projectile extends Actor{
 		ArrayList<Creature> creatures = map.getCreatures();
 		for (Creature c : creatures){
 			if (Shape.overlaps(c.hit_box, this.hit_box)){
-				System.out.println("found creature");
+				// System.out.println("found creature"); // debugging
 				updateCreature(c);
 				remove();
 				break;
@@ -40,13 +40,40 @@ public abstract class Projectile extends Actor{
 	public void updateCreature(Creature c){
 	}
 
-	// potentially destroys creature when its life is 0
-	public void updateCreature(){
+	// potentially have a projectile that destroys creature instantly
+	// otherwise, we are currently just reducing the health of a creature
+	public void destroyCreature(){
 	}
 
 
+	/**
+	 * Gets the closest projectile to the projectile on the map
+	 * @return Creature object that is closest to this projectile (null if no creatures)
+	 */
+	public Creature getClosestCreature(){
+		ArrayList<Creature> creatures = map.getCreatures();
+		if (creatures.isEmpty()){
+			return null;
+		}
+		Creature closest_creature = creatures.get(0);
+		double closest_distance = Shape.getDistance(closest_creature.hit_box, this.hit_box);
+		double temp_distance;
+		for (Creature c : creatures){
+			temp_distance = Shape.getDistance(c.hit_box, this.hit_box);
+			if (temp_distance < closest_distance){
+				closest_distance = temp_distance;
+				closest_creature = c;
+			}
+		}
+		return closest_creature;
+	}
+
 	public Projectile(String name, Map map){
 		super(name, map);
+	}
+
+	public double getOverallVelocity(){
+		return Math.sqrt(x_velocity * x_velocity + y_velocity * y_velocity);
 	}
 
 	public double get_x_velocity(){

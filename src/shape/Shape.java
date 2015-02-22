@@ -89,6 +89,12 @@ public abstract class Shape{
 	public void set_Y(double y){
 		this.y_position = y;
 	}
+	public double getX(){
+		return this.x_position;
+	}
+	public double getY(){
+		return this.y_position;
+	}
 
 	public void draw(){
 	}

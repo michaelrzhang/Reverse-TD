@@ -57,7 +57,8 @@ public class BasicTest{
 			Grid g = p.map.closestGrid(x,y);
 			System.out.println(g.type());
 			if (!key[1] && g.can_place()){
-				p.buyActor(new BasicTower("testtower", p.map, x, y));
+				// p.buyActor(new BasicTower("testtower", p.map, x, y));
+				p.buyActor(new HoningTower("testtower", p.map, x, y));
 			}
 			key[1] = true;
 		}
