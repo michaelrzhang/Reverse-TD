@@ -57,8 +57,8 @@ public class HoningProjectile extends Projectile{
 		// set_x_velocity(curr_velocity * x_direction / (x_direction * x_direction + y_direction * y_direction));
 		// set_y_velocity(curr_velocity * y_direction / (x_direction * x_direction + y_direction * y_direction));
 		// trying to get direction working
-		set_x_velocity(20 * x_direction / Math.sqrt((x_direction * x_direction + y_direction * y_direction)));
-		set_y_velocity(20 * y_direction / Math.sqrt((x_direction * x_direction + y_direction * y_direction)));
+		set_x_velocity(10 * x_direction / Math.sqrt((x_direction * x_direction + y_direction * y_direction)));
+		set_y_velocity(10 * y_direction / Math.sqrt((x_direction * x_direction + y_direction * y_direction)));
 	}
 
 	private void move(double dt){
