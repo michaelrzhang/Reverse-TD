@@ -2,7 +2,8 @@ package src.actor;
 import src.map.*;
 import src.bank.*;
 import src.shape.*;
-public abstract class Actor{
+import src.*;
+public abstract class Actor implements Selectable{
 	public String name;
 	public double x_position;
 	public double y_position;
@@ -25,16 +26,12 @@ public abstract class Actor{
 		this.name = name;
 		this.map = map;
 	}
+	public Actor(String name){
+		this.name = name;
+	}
 	public abstract void action(double dt);
 	public boolean buy(){
 		return bank.withdraw(cost);
-		// boolean can_buy = bank.withdraw(cost);
-		// if (can_buy){
-		// 	return "bought: " + name;
-		// } 
-		// else{
-		// 	return "insufficient funds to buy: " + name;
-		// }
 	}
 	public void draw(){
 		hit_box.draw();
@@ -46,4 +43,14 @@ public abstract class Actor{
 		hit_box.set_X(this.x_position);
 		hit_box.set_Y(this.y_position);
 	}
+	public int get_cost(){
+		return this.cost;
+	}
+	public int get_health(){
+		return this.health;
+	}
+	public Shape get_Shape(){
+		return hit_box;
+	}
+	public void select(){}
 }

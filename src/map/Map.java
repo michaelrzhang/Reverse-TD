@@ -5,26 +5,36 @@ import src.actor.*;
 import src.actor.creature.*;
 import src.actor.projectile.*;
 import src.actor.tower.*;
+import src.UI.*;
 public class Map{
 	Grid[][] grid_Map;
 	int grid_Size;
 	int xMax_val;
 	int yMax_val;
+	double xScale;
+	double yScale;
 	double[][] path;
 	DirectionGrid start; // where creatures enter
 	EndGrid end; // where creature leave the map
 	ArrayList<DirectionGrid> dGrid = new ArrayList<DirectionGrid>();
 	ArrayList<Actor> actors = new ArrayList<Actor>(); // active actors
 	ArrayList<Actor> queue = new ArrayList<Actor>(); // actors to be added next dt
+	ArrayList<Creature> creatures = new ArrayList<Creature>(); // active creatures
+	ArrayList<Creature> creatures_queue = new ArrayList<Creature>(); // active creatures
+	ArrayList<Actor> remove_queue = new ArrayList<Actor>();
 	int path_Width;
+	public ArrayList<UI> ui = new ArrayList<UI>();
 
-	public Map(double[][] p, int n, int xMax, int yMax, int pWidth){
+	public Map(double[][] p, int n, int xMax, int yMax, int pWidth, ArrayList<UI> ui){
 		this.grid_Size = n;
 		this.path = p;
 		this.xMax_val = xMax;
 		this.yMax_val = yMax;
+		this.xScale = (0.0 + xMax_val)/grid_Size;
+		this.yScale = (0.0 + yMax_val)/grid_Size;
 		this.grid_Map = new Grid[this.grid_Size][this.grid_Size];
 		this.path_Width = pWidth;
+		this.ui = ui;
 	}
 
 	public void initialize(){
@@ -34,6 +44,7 @@ public class Map{
 			}
 		}
 		initDirection();
+		initUI();
 	}
 
 	public Grid closestGrid(double[] point){
@@ -53,7 +64,14 @@ public class Map{
 		coordinate[0] = (int) (point[0] * grid_Size / xMax_val); 
 		coordinate[1] = (int) (point[1] * grid_Size / yMax_val);
 		return coordinate;
-	} 
+	}
+	public int[] closestGridCoordinate(double x, double y){
+		int[] coordinate = new int[2];
+		coordinate[0] = (int) (x * grid_Size / xMax_val); 
+		coordinate[1] = (int) (y * grid_Size / yMax_val);
+		return coordinate;
+	}
+
 	
 	public void initDirection(){
 		int[] prev;
@@ -131,7 +149,9 @@ public class Map{
 	}
 
 	public void initUI(){
-
+		for (UI u : ui){
+			convertUIGrid(u);
+		}
 	}
 	public DirectionGrid get_start(){
 		return start;
@@ -156,17 +176,36 @@ public class Map{
 
 	public void addActor(Actor a){
 		queue.add(a); // cant be immediately added because then it causes problems when looping through the actors
+		if (a instanceof Creature){
+			creatures_queue.add((Creature) a);
+		}
+	}
+
+	public void addTower(Tower t){
+		queue.add(t);
 	}
 
 	public void unQueue(){
 		for (Actor a : queue){
 			actors.add(a);
 		}
+		for (Creature c : creatures_queue){
+			creatures.add(c);
+		}
+		for (Actor a : remove_queue){
+			actors.remove(a);
+			if (a instanceof Creature){
+				creatures.remove((Creature) a);
+			}
+		}
+
+		creatures_queue = new ArrayList<Creature>();
 		queue = new ArrayList<Actor>();
+		remove_queue = new ArrayList<Actor>();
 	}
 
 	public Actor remove(Actor a){
-		actors.remove(a);
+		remove_queue.add(a);
 		return a;
 	}
 
@@ -177,9 +216,41 @@ public class Map{
 		}
 
 	}
+
+	public void convertUIGrid(UI u){
+		int[] bottomleft = closestGridCoordinate(u.get_x_position(),u.get_y_position());
+		int a = bottomleft[0];
+		int b = bottomleft[1];
+		int width = (int) (u.get_xlength()/xScale);
+		int height = (int) (u.get_ylength()/yScale);
+		UIGrid[][] uigrid = new UIGrid[width+1][height+1];
+		for (int i = 0; i <= width; i++){
+			for(int j = 0; j <= height; j++){
+				if (checkCoordinate(a+i,b+j)){
+					grid_Map[a+i][b+j] = new UIGrid(grid_Map[a+i][b+j], u);
+					uigrid[i][j] = (UIGrid) grid_Map[a+i][b+j];
+				}
+			}
+		}
+		u.set_uigrid(uigrid);
+	}
+	public boolean checkCoordinate(int x, int y){
+		if (x>=grid_Size || x < 0 || y >=grid_Size || y<0){
+			return false;
+		}
+		return true;
+	}
+
+	public ArrayList<Creature> getCreatures(){
+		return creatures;
+	}
+
 	public void draw(){
 		for (Actor a: actors){
 			a.draw();
+		}
+		for (UI u: ui){
+			u.draw();
 		}
 	}
 }

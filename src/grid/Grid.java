@@ -1,22 +1,18 @@
 package src.grid;
 import src.map.*;
+import src.*;
 public abstract class Grid{
 	String name; // id of grid
 	double x_position; // xposition of center
 	double y_position; // yposition of center
 	boolean can_place; // determines if towers can be built on this grid
-	Grid[] adjacent = new Grid[4]; // keeps track of what grids surround this grid  
 	Map map;
-	// Projectile[] projectiles;
+	Selectable s;
 	public Grid(double x, double y, String nm, Map m){
 		this.x_position = x;
 		this.y_position = y;
 		this.name = nm;
 		this.map = m;
-		// this.adjacent[0] = upper;
-		// this.adjacent[1] = right;
-		// this.adjacent[2] = lower;
-		// this.adjacent[3] = right;
 	}
 	public abstract String type();
 	public void setStart(){}
@@ -29,5 +25,8 @@ public abstract class Grid{
 	}
 	public boolean can_place(){
 		return can_place;
+	}
+	public void set_canPlace(boolean b){
+		can_place = b;
 	}
 }
