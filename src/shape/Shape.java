@@ -22,36 +22,58 @@ public abstract class Shape{
 	/**
 	 * Returns whether or not two shapes overlap
 	 */
+	// public static boolean overlaps(Shape a, Shape b){
+	// // two regular polygons hard
+	// 	double distance = getDistance(a, b);
+	// 	double delta_x = a.x_position - b.x_position;
+	// 	double delta_y = a.y_position - b.y_position;
+	// 	// should be the minimum of apothem/cos(theta_x) because
+	// 	// the direct distance that is inside the shape is shorter
+	// 	// when the ratio between delta_y/delta_x is more extreme
+	// 	double theta1 = Math.abs(Math.atan(delta_y/delta_x));
+	// 	double theta2 = Math.abs(Math.atan(delta_y/delta_x));
+	// 	double cosine_theta = Math.max(Math.cos(theta1), Math.cos(theta2));
+	// 	double a_distance, b_distance;
+	// 	if (a.name.equals("circle")){
+	// 		a_distance = a.apothem;
+	// 	}
+	// 	else{
+	// 		a_distance = a.apothem / cosine_theta;
+	// 	}
+	// 	if (b.name.equals("circle")){
+	// 		b_distance = b.apothem;
+	// 	}
+	// 	else{
+	// 		b_distance = b.apothem / cosine_theta;
+	// 	}
+
+	// 	if (a_distance + b_distance >= distance){
+	// 		return true;
+	// 	}
+	// 	return false;
+	// }
+	// 
 	public static boolean overlaps(Shape a, Shape b){
-	// two regular polygons hard
 		double distance = getDistance(a, b);
-		double delta_x = a.x_position - b.x_position;
-		double delta_y = a.y_position - b.y_position;
-		// should be the minimum of apothem/cos(theta_x) because
-		// the direct distance that is inside the shape is shorter
-		// when the ratio between delta_y/delta_x is more extreme
-		double theta1 = Math.abs(Math.atan(delta_y/delta_x));
-		double theta2 = Math.abs(Math.atan(delta_y/delta_x));
-		double cosine_theta = Math.max(Math.cos(theta1), Math.cos(theta2));
 		double a_distance, b_distance;
 		if (a.name.equals("circle")){
 			a_distance = a.apothem;
 		}
 		else{
-			a_distance = a.apothem / cosine_theta;
+			a_distance = a.apothem * Math.sqrt(2);
 		}
 		if (b.name.equals("circle")){
 			b_distance = b.apothem;
 		}
 		else{
-			b_distance = b.apothem / cosine_theta;
+			b_distance = b.apothem * Math.sqrt(2);
 		}
-
 		if (a_distance + b_distance >= distance){
 			return true;
 		}
 		return false;
 	}
+	
 
 	/**
 	 * Returns distance between two different shapes
