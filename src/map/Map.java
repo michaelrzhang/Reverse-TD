@@ -23,7 +23,7 @@ public class Map{
 	ArrayList<Creature> creatures_queue = new ArrayList<Creature>(); // active creatures
 	ArrayList<Actor> remove_queue = new ArrayList<Actor>();
 	int path_Width;
-	ArrayList<UI> ui = new ArrayList<UI>();
+	public ArrayList<UI> ui = new ArrayList<UI>();
 
 	public Map(double[][] p, int n, int xMax, int yMax, int pWidth, ArrayList<UI> ui){
 		this.grid_Size = n;
