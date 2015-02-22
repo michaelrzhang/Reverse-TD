@@ -195,12 +195,13 @@ public class Map{
 		for (Actor a : remove_queue){
 			actors.remove(a);
 			if (a instanceof Creature){
-				creatures_queue.remove((Creature) a);
+				creatures.remove((Creature) a);
 			}
 		}
 
 		creatures_queue = new ArrayList<Creature>();
 		queue = new ArrayList<Actor>();
+		remove_queue = new ArrayList<Actor>();
 	}
 
 	public Actor remove(Actor a){
@@ -238,6 +239,10 @@ public class Map{
 			return false;
 		}
 		return true;
+	}
+
+	public ArrayList<Creature> getCreatures(){
+		return creatures;
 	}
 
 	public void draw(){

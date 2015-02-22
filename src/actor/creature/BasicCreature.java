@@ -32,7 +32,7 @@ public class BasicCreature extends Creature{
 	public void action(double dt){
 		move(dt);
 		time_alive += dt;
-		if (health == 0){
+		if (health <= 0){
 			remove();
 		}
 		update_shape();

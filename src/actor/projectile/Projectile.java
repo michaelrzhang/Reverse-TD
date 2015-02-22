@@ -1,8 +1,12 @@
 package src.actor.projectile;
 import src.actor.*;
+import src.actor.creature.*;
 import src.shape.*;
 import src.map.*;
 import src.grid.*;
+
+import java.util.ArrayList;
+
 public abstract class Projectile extends Actor{
 	double x_velocity;
 	double y_velocity;
@@ -18,6 +22,28 @@ public abstract class Projectile extends Actor{
 		this.y_velocity = y_velocity;
 		this.honing = honing;
 	}
+
+	public void checkCollision(){
+	// makes sure projectile dies
+		ArrayList<Creature> creatures = map.getCreatures();
+		for (Creature c : creatures){
+			if (Shape.overlaps(c.hit_box, this.hit_box)){
+				System.out.println("found creature");
+				updateCreature(c);
+				remove();
+				break;
+			}
+		}
+	}
+
+	// creature dies when health is 0
+	public void updateCreature(Creature c){
+	}
+
+	// potentially destroys creature when its life is 0
+	public void updateCreature(){
+	}
+
 
 	public Projectile(String name, Map map){
 		super(name, map);
