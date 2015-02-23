@@ -24,7 +24,10 @@ public class BasicTest{
 		Player player1 = new Player(1, m, new Bank(100));
 		Player player2 = new Player(2, m, new Bank(100));
 		while(true){
-			StdDraw.picture(25.0, 25.0, "images/background.jpg");
+			// StdDraw.picture(25.0, 25.0, "images/background.jpg"); 
+			StdDraw.picture(25.0, 25.0, "images/black_background.jpg", 90, 100, 100);
+			// if you make the picture too small (try the thing below) some weird shit happens
+			// StdDraw.picture(25.0, 25.0, "images/black_background.jpg", 90);
 			for (DirectionGrid g: dGrid){
 				g.setCreaturesDirection();
 			}
@@ -57,7 +60,8 @@ public class BasicTest{
 			Grid g = p.map.closestGrid(x,y);
 			System.out.println(g.type());
 			if (!key[1] && g.can_place()){
-				p.buyActor(new BasicTower("testtower", p.map, x, y));
+				// p.buyActor(new BasicTower("testtower", p.map, x, y));
+				p.buyActor(new HoningTower("testtower", p.map, x, y));
 			}
 			key[1] = true;
 		}

@@ -37,6 +37,7 @@ public class BasicProjectile extends Projectile{
 		update_shape();
 	}
 	private void move(double dt){
+		// System.out.println("david did this");
 		x_position += x_velocity * dt;
 		y_position += y_velocity * dt;
 	}
