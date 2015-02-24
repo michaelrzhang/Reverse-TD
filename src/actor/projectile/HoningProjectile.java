@@ -47,18 +47,21 @@ public class HoningProjectile extends Projectile{
 		double x_direction = target.hit_box.getX() - this.hit_box.getX();
 		double y_direction = target.hit_box.getY() - this.hit_box.getY();
 		double curr_velocity = super.getOverallVelocity();
-		System.out.println(target.hit_box.getX());
-		System.out.println(this.hit_box.getX());
-		System.out.println(x_direction);
-		System.out.println(target.hit_box.getY());
-		System.out.println(this.hit_box.getY());
-		System.out.println(y_direction);
-		System.out.println(curr_velocity);
+
+		// ***For debugging
+		// System.out.println(target.hit_box.getX());
+		// System.out.println(this.hit_box.getX());
+		// System.out.println(x_direction);
+		// System.out.println(target.hit_box.getY());
+		// System.out.println(this.hit_box.getY());
+		// System.out.println(y_direction);
+		// System.out.println(curr_velocity);
+		
 		// set_x_velocity(curr_velocity * x_direction / (x_direction * x_direction + y_direction * y_direction));
 		// set_y_velocity(curr_velocity * y_direction / (x_direction * x_direction + y_direction * y_direction));
 		// trying to get direction working
-		set_x_velocity(10 * x_direction / Math.sqrt((x_direction * x_direction + y_direction * y_direction)));
-		set_y_velocity(10 * y_direction / Math.sqrt((x_direction * x_direction + y_direction * y_direction)));
+		set_x_velocity(curr_velocity * x_direction / Math.sqrt((x_direction * x_direction + y_direction * y_direction)));
+		set_y_velocity(curr_velocity * y_direction / Math.sqrt((x_direction * x_direction + y_direction * y_direction)));
 	}
 
 	private void move(double dt){

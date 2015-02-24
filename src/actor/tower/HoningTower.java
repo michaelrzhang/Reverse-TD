@@ -14,7 +14,7 @@ public class HoningTower extends Tower{
 		super(name, m);
 		this.x_position = 5;
 		this.y_position = 5;
-		this.velocity = 12;
+		this.velocity = 20;
 		this.acceleration = 2;
 		this.time_alive = 5;
 		this.hit_box = new Square(x_position, y_position, 0.3);
@@ -27,7 +27,7 @@ public class HoningTower extends Tower{
 		super(name, m);
 		this.x_position = x_position;
 		this.y_position = y_position;
-		this.velocity = 12;
+		this.velocity = 20;
 		this.acceleration = 2;
 		this.time_alive = 5;
 		this.hit_box = new Square(x_position, y_position, 1.2);
