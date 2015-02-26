@@ -3,6 +3,7 @@ import src.shape.*;
 import src.actor.creature.*;
 import src.map.*;
 import src.grid.*;
+import java.awt.Color;
 public class BasicProjectile extends Projectile{
 	
 	// mostly for testing purposes
@@ -13,11 +14,11 @@ public class BasicProjectile extends Projectile{
 		this.x_position = 5;
 		this.y_position = 5;
 		this.time_alive = 2;
-		this.hit_box = new Circle(x_position, y_position, 0.3);
+		this.hit_box = new Circle(x_position, y_position, 5, Color.CYAN);
 		this.honing = false;
 	}
 	
-	public BasicProjectile(String name, double x_position, double y_position, Shape hit_box, Map map, 
+	public BasicProjectile(String name, int x_position, int y_position, Shape hit_box, Map map, 
 		double x_velocity, double y_velocity, boolean honing){
 		super(name, x_position, y_position, hit_box, 0, 1, map, x_velocity, y_velocity, honing);
 		this.time_alive = 2;
@@ -38,7 +39,7 @@ public class BasicProjectile extends Projectile{
 	}
 	private void move(double dt){
 		// System.out.println("david did this");
-		x_position += x_velocity * dt;
-		y_position += y_velocity * dt;
+		x_position += (int) (x_velocity * dt);
+		y_position += (int) (y_velocity * dt);
 	}
 }

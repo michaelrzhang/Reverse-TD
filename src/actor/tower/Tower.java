@@ -5,6 +5,7 @@ import src.actor.creature.*;
 import src.grid.*;
 import src.map.*;
 import src.actor.*;
+import java.util.ArrayList;
 public abstract class Tower extends Actor{
 	double velocity; // initial velocity of projectiles fired
 	double acceleration; // acceleration of projectiles fired
@@ -13,7 +14,7 @@ public abstract class Tower extends Actor{
 	double range;
 	TowerGrid[][] tg;
 
-	public Tower(String name, double x_position, double y_position, Shape hit_box, 
+	public Tower(String name, int x_position, int y_position, Shape hit_box, 
 		int cost, int health, Map map, TowerGrid[][] tg, boolean honing, double acceleration){
 		super(name, x_position, y_position, hit_box, cost, health, map);
 		this.velocity = velocity;
@@ -54,10 +55,10 @@ public abstract class Tower extends Actor{
 	public double get_y_position(){
 		return y_position;
 	}
-	public void set_x_position(double x){
+	public void set_x_position(int x){
 		this.x_position = x;
 	}
-	public void set_y_position(double y){
+	public void set_y_position(int y){
 		this.y_position = y;
 	}
 	public void select(){}

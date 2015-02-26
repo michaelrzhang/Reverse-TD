@@ -4,7 +4,7 @@ import src.map.*;
 import src.grid.*;
 public class UIGrid extends Grid{
 	UI ui; // what ui objects are on grid *ui should not overlap
-	public UIGrid(double x, double y,String nm, Map m, UI ui){
+	public UIGrid(int x, int y,String nm, Map m, UI ui){
 		super(x, y, nm, m);
 		this.can_place = false;
 		this.ui = ui;
