@@ -6,7 +6,10 @@ import src.actor.creature.*;
 import src.actor.projectile.*;
 import src.actor.tower.*;
 import src.UI.*;
-public class Map{
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import javax.swing.*;
+public class Map extends JFrame{
 	Grid[][] grid_Map;
 	int grid_Size;
 	int xMax_val;
@@ -23,6 +26,7 @@ public class Map{
 	ArrayList<Creature> creatures_queue = new ArrayList<Creature>(); // active creatures
 	ArrayList<Actor> remove_queue = new ArrayList<Actor>();
 	int path_Width;
+	Graphics2D g2d;
 	public ArrayList<UI> ui = new ArrayList<UI>();
 
 	public Map(double[][] p, int n, int xMax, int yMax, int pWidth, ArrayList<UI> ui){
@@ -35,6 +39,9 @@ public class Map{
 		this.grid_Map = new Grid[this.grid_Size][this.grid_Size];
 		this.path_Width = pWidth;
 		this.ui = ui;
+		this.g2d = (Graphics2D) this.getGraphics();
+		setTitle("WASSUP MICHAEL");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public void initialize(){
