@@ -56,6 +56,7 @@ public class Map extends JFrame{
 		addKeyBoard();
 		addMouse();
 		background(b);
+		setUndecorated(true);
 		setVisible(true);
 		this.g2d = (Graphics2D) this.getGraphics();
 		initialize();

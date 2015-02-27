@@ -17,7 +17,7 @@ public abstract class Projectile extends Actor{
 
 	// potentially create a constructor based on tower launched from
 
-	public Projectile(String name, double x_position, double y_position, 
+	public Projectile(String name, int x_position, int y_position, 
 		Shape hit_box, int cost, int health, Map map, double x_velocity, 
 		double y_velocity, double x_acceleration, double y_acceleration, boolean honing){
 		super(name, x_position, y_position, hit_box, cost, health, map);
