@@ -3,6 +3,7 @@ import src.shape.*;
 import src.actor.creature.*;
 import src.map.*;
 import src.grid.*;
+import java.awt.Color;
 public class HoningProjectile extends Projectile{
 	
 	// mostly for testing purposes
@@ -13,13 +14,13 @@ public class HoningProjectile extends Projectile{
 		this.x_position = 5;
 		this.y_position = 5;
 		this.time_alive = 2;
-		this.hit_box = new Circle(x_position, y_position, 0.3);
+		this.hit_box = new Circle(x_position, y_position, 5, Color.BLUE);
 		this.honing = true;
 	}
 	
-	public HoningProjectile(String name, double x_position, double y_position, Shape hit_box, Map map, 
+	public HoningProjectile(String name, int x_position, int y_position, Shape hit_box, Map map, 
 		double x_velocity, double y_velocity, boolean honing){
-		super(name, x_position, y_position, hit_box, 0, 1, map, x_velocity, y_velocity, true);
+		super(name, x_position, y_position, hit_box, 0, 2, map, x_velocity, y_velocity, true);
 		this.time_alive = 2;
 	}
 	
@@ -47,14 +48,6 @@ public class HoningProjectile extends Projectile{
 		double x_direction = target.hit_box.getX() - this.hit_box.getX();
 		double y_direction = target.hit_box.getY() - this.hit_box.getY();
 		double curr_velocity = super.getOverallVelocity();
-		// ***For debugging
-		// System.out.println(target.hit_box.getX());
-		// System.out.println(this.hit_box.getX());
-		// System.out.println(x_direction);
-		// System.out.println(target.hit_box.getY());
-		// System.out.println(this.hit_box.getY());
-		// System.out.println(y_direction);
-		// System.out.println(curr_velocity);
 		// set_x_velocity(curr_velocity * x_direction / (x_direction * x_direction + y_direction * y_direction));
 		// set_y_velocity(curr_velocity * y_direction / (x_direction * x_direction + y_direction * y_direction));
 		// trying to get direction working

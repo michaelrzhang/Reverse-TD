@@ -1,7 +1,7 @@
 package src.grid;
 import src.map.*;
 public class PathGrid extends Grid{
-	public PathGrid(double x, double y,String nm, Map m){
+	public PathGrid(int x, int y,String nm, Map m){
 		super(x, y, nm, m);
 		this.can_place = false;
 	}

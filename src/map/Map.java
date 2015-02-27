@@ -1,19 +1,30 @@
 package src.map;
-import java.util.ArrayList;
+import java.util.*;
 import src.grid.*;
 import src.actor.*;
 import src.actor.creature.*;
 import src.actor.projectile.*;
 import src.actor.tower.*;
 import src.UI.*;
-public class Map{
+import src.player.*;
+import src.bank.*;
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.event.*;
+import java.io.File;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.event.MouseInputAdapter;
+public class Map extends JFrame{
+	public int seconds;
 	Grid[][] grid_Map;
-	int grid_Size;
+	// int grid_Size;
 	int xMax_val;
 	int yMax_val;
-	double xScale;
-	double yScale;
-	double[][] path;
+	int[][] path;
 	DirectionGrid start; // where creatures enter
 	EndGrid end; // where creature leave the map
 	ArrayList<DirectionGrid> dGrid = new ArrayList<DirectionGrid>();
@@ -23,53 +34,60 @@ public class Map{
 	ArrayList<Creature> creatures_queue = new ArrayList<Creature>(); // active creatures
 	ArrayList<Actor> remove_queue = new ArrayList<Actor>();
 	int path_Width;
+	Graphics2D g2d;
+	private static BitSet keyBits = new BitSet(256);
 	public ArrayList<UI> ui = new ArrayList<UI>();
-
-	public Map(double[][] p, int n, int xMax, int yMax, int pWidth, ArrayList<UI> ui){
-		this.grid_Size = n;
+	BufferedImage background;
+	int mouseX;
+	int mouseY;
+	boolean mouseActive = false;
+	Player player1 = new Player(1, this, new Bank(100));
+	Player player2 = new Player(2, this, new Bank(100));
+	public Map(int[][] p, int xMax, int yMax, int pWidth, String b){
 		this.path = p;
 		this.xMax_val = xMax;
 		this.yMax_val = yMax;
-		this.xScale = (0.0 + xMax_val)/grid_Size;
-		this.yScale = (0.0 + yMax_val)/grid_Size;
-		this.grid_Map = new Grid[this.grid_Size][this.grid_Size];
+		this.grid_Map = new Grid[xMax_val][yMax_val];
 		this.path_Width = pWidth;
 		this.ui = ui;
+		setTitle("WASSUP MICHAEL");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setMinimumSize(new Dimension(xMax_val, yMax_val));
+		addKeyBoard();
+		addMouse();
+		background(b);
+		setVisible(true);
+		this.g2d = (Graphics2D) this.getGraphics();
+		initialize();
+		setResizable(false);
 	}
 
 	public void initialize(){
-		for (int i = 0; i < grid_Size; i++){
-			for (int j = 0; j< grid_Size; j++){ 
-				this.grid_Map[i][j] = new TowerGrid(xMax_val*(i+0.5)/grid_Size, yMax_val*(0.5 + j)/grid_Size, String.valueOf(i) + " x " + String.valueOf(j), this);
+		for (int i = 0; i < xMax_val; i++){
+			for (int j = 0; j< yMax_val; j++){ 
+				this.grid_Map[i][j] = new TowerGrid(i, j, String.valueOf(i) + " x " + String.valueOf(j), this);
 			}
 		}
 		initDirection();
+		addUI();
 		initUI();
 	}
 
-	public Grid closestGrid(double[] point){
-		int x = (int) (point[0] * grid_Size / xMax_val); 
-		int y = (int) (point[1] * grid_Size / yMax_val);
+	public Grid closestGrid(int[] point){
+		int x = point[0];
+		int y = point[1];
 		return grid_Map[x][y]; 
 	}
 
-	public Grid closestGrid(double x_pos, double y_pos){
-		int x = (int) (x_pos * grid_Size / xMax_val); 
-		int y = (int) (y_pos * grid_Size / yMax_val);
-		return grid_Map[x][y]; 		
+	public Grid closestGrid(int x_pos, int y_pos){
+		return grid_Map[x_pos][y_pos]; 		
 	}
 
-	public int[] closestGridCoordinate(double[] point){
-		int[] coordinate = new int[2];
-		coordinate[0] = (int) (point[0] * grid_Size / xMax_val); 
-		coordinate[1] = (int) (point[1] * grid_Size / yMax_val);
-		return coordinate;
+	public int[] closestGridCoordinate(int[] point){
+		return point;
 	}
-	public int[] closestGridCoordinate(double x, double y){
-		int[] coordinate = new int[2];
-		coordinate[0] = (int) (x * grid_Size / xMax_val); 
-		coordinate[1] = (int) (y * grid_Size / yMax_val);
-		return coordinate;
+	public int[] closestGridCoordinate(int x, int y){
+		return new int[] {x, y};
 	}
 
 	
@@ -120,12 +138,12 @@ public class Map{
 	private void convertPath(int a, int b, int direction){ // direction = 1 is vertical direction = 0 is horizontal
 		if (direction == 1){ // vertical
 			for (int j = 1; j < path_Width+1; j++){
-				if (a + j >= 0 && a + j < grid_Size){
+				if (a + j >= 0 && a + j < xMax_val){
 					if (grid_Map[a+j][b].type() != "Direction"){
 						grid_Map[a+j][b] = new PathGrid(grid_Map[a+j][b]);
 					}
 				}
-				if (a-j >= 0 && a-j < grid_Size){
+				if (a-j >= 0 && a-j < xMax_val){
 					if (grid_Map[a-j][b].type() != "Direction"){
 						grid_Map[a-j][b] = new PathGrid(grid_Map[a-j][b]);
 					}
@@ -134,12 +152,12 @@ public class Map{
 		}
 		else{ // horizontal
 			for (int j = 1; j < path_Width+1; j++){
-				if (b+j >= 0 && b+j < grid_Size){
+				if (b+j >= 0 && b+j < yMax_val){
 					if (grid_Map[a][b+j].type() != "Direction"){
 						grid_Map[a][b+j] = new PathGrid(grid_Map[a][b+j]);
 					}
 				}
-				if (b-j >= 0 && b-j < grid_Size){
+				if (b-j >= 0 && b-j < yMax_val){
 					if (grid_Map[a][b-j].type() != "Direction"){
 						grid_Map[a][b-j] = new PathGrid(grid_Map[a][b-j]);
 					}
@@ -152,6 +170,9 @@ public class Map{
 		for (UI u : ui){
 			convertUIGrid(u);
 		}
+	}
+	public void addUI(){
+		ui.add(new CreatureUI(700, 700, 100, 100));
 	}
 	public DirectionGrid get_start(){
 		return start;
@@ -168,6 +189,11 @@ public class Map{
 					i++;
 				}
 			}
+		}
+	}
+	public void setDirection(){
+		for (DirectionGrid g : dGrid){
+			g.setCreaturesDirection();
 		}
 	}
 	public ArrayList<DirectionGrid> get_dGrid(){
@@ -211,18 +237,19 @@ public class Map{
 
 	public void action(double dt){
 		unQueue(); // avoids concurent modification 
+		setDirection();
 		for (Actor a : actors){
 			a.action(dt);
 		}
-
+		draw();
 	}
 
 	public void convertUIGrid(UI u){
 		int[] bottomleft = closestGridCoordinate(u.get_x_position(),u.get_y_position());
 		int a = bottomleft[0];
 		int b = bottomleft[1];
-		int width = (int) (u.get_xlength()/xScale);
-		int height = (int) (u.get_ylength()/yScale);
+		int width = u.get_xlength();
+		int height = u.get_ylength();
 		UIGrid[][] uigrid = new UIGrid[width+1][height+1];
 		for (int i = 0; i <= width; i++){
 			for(int j = 0; j <= height; j++){
@@ -235,7 +262,7 @@ public class Map{
 		u.set_uigrid(uigrid);
 	}
 	public boolean checkCoordinate(int x, int y){
-		if (x>=grid_Size || x < 0 || y >=grid_Size || y<0){
+		if (x>=xMax_val || x < 0 || y >=yMax_val || y<0){
 			return false;
 		}
 		return true;
@@ -245,12 +272,81 @@ public class Map{
 		return creatures;
 	}
 
-	public void draw(){
-		for (Actor a: actors){
-			a.draw();
+	public void background(String b){
+		try{
+			background =  ImageIO.read(new File(b));
 		}
-		for (UI u: ui){
-			u.draw();
+		catch (Exception e){
 		}
 	}
+	public void draw(){
+		g2d.drawImage(background, 0,0,xMax_val, yMax_val, null);
+		for (Actor a: actors){
+			a.draw(g2d);
+		}
+		for (UI u: ui){
+			u.draw(g2d);
+		}
+	}
+	public void addKeyBoard(){
+		this.addKeyListener(new KeyListener(){
+			public void keyPressed(KeyEvent e){
+				int keyCode = e.getKeyCode();
+				keyBits.set(keyCode);
+			}
+			public void keyReleased(KeyEvent e){
+				int keyCode = e.getKeyCode();
+				right();
+				left();
+				space();
+				keyBits.clear(keyCode);
+			}
+			public void keyTyped(KeyEvent e){
+			}
+		});
+	}
+	public void addMouse(){
+		MouseInputAdapter ml = new MouseInputAdapter(){
+			public void mousePressed(MouseEvent e){}
+			public void mouseReleased(MouseEvent e){
+				mouseX = e.getXOnScreen();
+				mouseY = e.getYOnScreen();
+				mouseActive = true;
+			}
+			public void mouseMoved(MouseEvent e){}
+			public void mouseDragged(MouseEvent e){}
+		};
+		addMouseListener(ml);
+		addMouseMotionListener(ml);
+	}
+	public void mouseClick(){
+		if (mouseActive){
+			player2.buyActor(new HoningTower("testtower", this, mouseX, mouseY));
+			System.out.println(mouseX);
+			System.out.println(mouseY);
+		}
+		mouseActive = false;
+	}
+	public boolean isKeyPressed(int keyCode){
+		return keyBits.get(keyCode);
+	}
+	public void right(){
+		if (isKeyPressed(39)){
+			((CreatureUI) ui.get(0)).change(1);
+			keyBits.clear(39);
+		}
+	}	
+	public void left(){
+		if (isKeyPressed(37)){
+			((CreatureUI) ui.get(0)).change(-1);
+			keyBits.clear(37);
+		}
+	}
+	public void space(){
+		if (isKeyPressed(32)){
+			((CreatureUI) ui.get(0)).get_Creature().copy(player1);
+			keyBits.clear(32);
+		}
+	}		
+
 }

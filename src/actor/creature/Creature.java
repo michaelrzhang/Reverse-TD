@@ -10,7 +10,7 @@ public abstract class Creature extends Actor{  // SHOULD THIS EXTE
 	double y_velocity;
 	int level = 1;
 	double time_alive = 0;
-	public Creature(String name, double x_position, double y_position, 
+	public Creature(String name, int x_position, int y_position, 
 		Shape hit_box, int cost, int health, Map map, double x_velocity, 
 		double y_velocity, DirectionGrid dg){
 		super(name, x_position, y_position, hit_box, cost, health, map);

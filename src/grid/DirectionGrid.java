@@ -7,7 +7,7 @@ public class DirectionGrid extends PathGrid{
 	boolean isStart = false;
 	boolean isEnd = false;
 	Creature[] creatures = new Creature[100];
-	public DirectionGrid(double x, double y,String nm, double xDirection, double yDirection, Map m){
+	public DirectionGrid(int x, int y,String nm, double xDirection, double yDirection, Map m){
 		super(x, y, nm, m);
 		double r = Math.sqrt(xDirection * xDirection + yDirection * yDirection);
 		this.x_direction = xDirection / r;
