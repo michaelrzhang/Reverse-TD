@@ -103,6 +103,7 @@ public class BasicTest{
 				Thread.sleep(1000/FPS);
 			}
 			catch(Exception e){}
+			System.out.println(frame.get_dGrid().size());
 		}
 	}
 }
