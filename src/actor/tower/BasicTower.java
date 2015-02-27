@@ -49,15 +49,17 @@ public class BasicTower extends Tower{
 
 	public void shoot_projectile(){
 		double actual_velocity = this.velocity / Math.sqrt(2);
-		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 5, Color.CYAN), 
-			map, actual_velocity, actual_velocity, false));
-		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 5, Color.CYAN), 
-			map, -1*actual_velocity, actual_velocity, false));
-		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 5, Color.CYAN), 
-			map, actual_velocity, -1*actual_velocity, false));
-		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 5, Color.CYAN), 
-			map, -1*actual_velocity, -1*actual_velocity, false));
+		double actual_acceleration = this.acceleration / Math.sqrt(2);
+		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 0.4, Color.BLUE), 
+			map, actual_velocity, actual_velocity, actual_acceleration, actual_acceleration, false));
+		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 0.4, Color.BLUE), 
+			map, -1*actual_velocity, actual_velocity, actual_acceleration, actual_acceleration, false));
+		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 0.4, Color.BLUE), 
+			map, actual_velocity, -1*actual_velocity, actual_acceleration, actual_acceleration, false));
+		map.addActor(new BasicProjectile("basic", x_position, y_position, new Circle(x_position, y_position, 0.4, Color.BLUE), 
+			map, -1*actual_velocity, -1*actual_velocity, actual_acceleration, actual_acceleration, false));
 	}
+
 	
 	// public void draw(){
 	// 	((Square) hit_box).drawTower(); // CASTING here for testing purposes

@@ -1,0 +1,8 @@
+integers
+based on pixels
+
+dt based on fps
+
+shape class not in awt
+
+fancy curves use polyfit

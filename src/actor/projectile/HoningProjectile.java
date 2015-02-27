@@ -19,8 +19,8 @@ public class HoningProjectile extends Projectile{
 	}
 	
 	public HoningProjectile(String name, int x_position, int y_position, Shape hit_box, Map map, 
-		double x_velocity, double y_velocity, boolean honing){
-		super(name, x_position, y_position, hit_box, 0, 2, map, x_velocity, y_velocity, true);
+		double x_velocity, double y_velocity, double x_acceleration, double y_acceleration, boolean honing){
+		super(name, x_position, y_position, hit_box, 0, 1, map, x_velocity, y_velocity, x_acceleration, y_acceleration, true);
 		this.time_alive = 2;
 	}
 	

@@ -21,6 +21,7 @@ public abstract class Tower extends Actor{
 		this.acceleration = acceleration;
 		this.honing = honing;
 		this.tg = tg;
+		// this.range = 
 	}
 
 	public Tower(String name, Map map){

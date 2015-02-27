@@ -19,8 +19,8 @@ public class BasicProjectile extends Projectile{
 	}
 	
 	public BasicProjectile(String name, int x_position, int y_position, Shape hit_box, Map map, 
-		double x_velocity, double y_velocity, boolean honing){
-		super(name, x_position, y_position, hit_box, 0, 1, map, x_velocity, y_velocity, honing);
+		double x_velocity, double y_velocity, double x_acceleration, double y_acceleration, boolean honing){
+		super(name, x_position, y_position, hit_box, 0, 1, map, x_velocity, y_velocity, x_acceleration, y_acceleration, honing);
 		this.time_alive = 2;
 	}
 	
@@ -38,8 +38,9 @@ public class BasicProjectile extends Projectile{
 		update_shape();
 	}
 	private void move(double dt){
-		// System.out.println("david did this");
-		x_position += (int) (x_velocity * dt);
-		y_position += (int) (y_velocity * dt);
+		x_position += (int) x_velocity * dt;
+		y_position += (int) y_velocity * dt;
+		x_velocity += x_acceleration * dt;
+		y_velocity += y_acceleration * dt;
 	}
 }
