@@ -14,16 +14,14 @@ public class FastCreature extends Creature{
 		hit_box = new Square(x_position, y_position, 10, Color.ORANGE);
 		cost = 2;
 		health = 2;
-		x_velocity = 120;
-		y_velocity = 0;
+		velocity = 120;
 	}
 
 	public FastCreature(String name, int x_position, int y_position, Map map, DirectionGrid dg){
 		super(name, x_position, y_position, new Square(x_position, y_position, 10, Color.ORANGE), 1, 1, map, 1.0, 1.0, dg);
 		cost = 2;
 		health = 2;
-		x_velocity = 10;
-		y_velocity = 0;
+		velocity = 120;
 	}
 	
 	public FastCreature(String name){
@@ -31,8 +29,7 @@ public class FastCreature extends Creature{
 		hit_box = new Square(x_position, y_position, 10, Color.ORANGE);
 		cost = 2;
 		health = 2;
-		x_velocity = 10;
-		y_velocity = 0;
+		velocity = 120;
 	}
 	public void copy(Player p){
 		p.buyActor(new FastCreature("testcreature", p.map));
@@ -47,10 +44,11 @@ public class FastCreature extends Creature{
 		update_shape();
 	}
 	private void move(double dt){
-		x_position += x_velocity * dt;
-		y_position += y_velocity * dt;
-		dg.remove_Creature(this);
-		dg = (DirectionGrid) map.closestGrid(x_position,y_position);  // grid is null here
-		dg.addCreature(this);
+		// x_position += x_velocity * dt;
+		// y_position += y_velocity * dt;
+		// dg.remove_Creature(this);
+		// dg = (DirectionGrid) map.closestGrid(x_position,y_position);  // grid is null here
+		// dg.addCreature(this);
+		timeOnPath = path.setPosition(this, dt, timeOnPath);
 	}
 }

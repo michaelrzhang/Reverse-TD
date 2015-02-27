@@ -92,7 +92,7 @@ public class BasicTest{
 	// }
 		int[][] path = {{100,100} ,{1800,100}, {1800, 1079}};
 		Map frame = new Map(path, 1920, 1080, 20, "images/black_background.jpg");
-		int FPS = 60;
+		int FPS = 20;
 		while(true){
 			frame.action(1.0/FPS);
 			// frame.right();
