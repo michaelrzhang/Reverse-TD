@@ -5,6 +5,7 @@ import src.actor.creature.*;
 import src.grid.*;
 import src.map.*;
 import src.actor.*;
+import java.util.ArrayList;
 public abstract class Tower extends Actor{
 	double velocity; // initial velocity of projectiles fired
 	double acceleration; // acceleration of projectiles fired
@@ -20,6 +21,7 @@ public abstract class Tower extends Actor{
 		this.acceleration = acceleration;
 		this.honing = honing;
 		this.tg = tg;
+		// this.range = 
 	}
 
 	public Tower(String name, Map map){

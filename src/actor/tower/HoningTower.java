@@ -48,8 +48,9 @@ public class HoningTower extends Tower{
 
 	public void shoot_projectile(){
 		double actual_velocity = this.velocity / Math.sqrt(2);
+		double actual_acceleration = this.acceleration / Math.sqrt(2);
 		map.addActor(new HoningProjectile("honing", x_position, y_position, new Circle(x_position, y_position, 0.4), 
-			map, actual_velocity, actual_velocity, true));
+			map, actual_velocity, actual_velocity, actual_acceleration, actual_acceleration, true));
 		// map.addActor(new HoningProjectile("honing", x_position, y_position, new Circle(x_position, y_position, 0.4), 
 		// 	map, -1*actual_velocity, actual_velocity, true));
 		// map.addActor(new HoningProjectile("honing", x_position, y_position, new Circle(x_position, y_position, 0.4), 

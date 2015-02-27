@@ -11,15 +11,20 @@ public abstract class Projectile extends Actor{
 	double x_velocity;
 	double y_velocity;
 	double time_alive;
+	double x_acceleration;
+	double y_acceleration;
 	boolean honing;
 
 	// potentially create a constructor based on tower launched from
 
 	public Projectile(String name, double x_position, double y_position, 
-		Shape hit_box, int cost, int health, Map map, double x_velocity, double y_velocity, boolean honing){
+		Shape hit_box, int cost, int health, Map map, double x_velocity, 
+		double y_velocity, double x_acceleration, double y_acceleration, boolean honing){
 		super(name, x_position, y_position, hit_box, cost, health, map);
 		this.x_velocity = x_velocity;
 		this.y_velocity = y_velocity;
+		this.x_acceleration = x_acceleration;
+		this.y_acceleration = y_acceleration;
 		this.honing = honing;
 	}
 
