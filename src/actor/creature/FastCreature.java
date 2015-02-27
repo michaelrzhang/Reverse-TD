@@ -14,7 +14,7 @@ public class FastCreature extends Creature{
 		hit_box = new Square(x_position, y_position, 10, Color.ORANGE);
 		cost = 2;
 		health = 2;
-		x_velocity = 10;
+		x_velocity = 120;
 		y_velocity = 0;
 	}
 

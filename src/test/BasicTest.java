@@ -90,11 +90,11 @@ public class BasicTest{
 	// 		key[3] = false;
 	// 	}
 	// }
-		int[][] path = {{100,100} ,{400,100}, {400, 400}};
-		Map frame = new Map(path, 800, 600, 20, "images/black_background.jpg");
-		int FPS = 30;
+		int[][] path = {{100,100} ,{1800,100}, {1800, 1079}};
+		Map frame = new Map(path, 1920, 1080, 20, "images/black_background.jpg");
+		int FPS = 60;
 		while(true){
-			frame.action(1.0/20);
+			frame.action(1.0/FPS);
 			// frame.right();
 			// frame.left();
 			// frame.space();
@@ -103,7 +103,6 @@ public class BasicTest{
 				Thread.sleep(1000/FPS);
 			}
 			catch(Exception e){}
-			System.out.println(frame.get_dGrid().size());
 		}
 	}
 }

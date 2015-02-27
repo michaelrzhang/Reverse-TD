@@ -323,8 +323,8 @@ public class Map extends JFrame{
 	public void mouseClick(){
 		if (mouseActive){
 			player2.buyActor(new HoningTower("testtower", this, mouseX, mouseY));
-			System.out.println(mouseX);
-			System.out.println(mouseY);
+			// System.out.println(mouseX);
+			// System.out.println(mouseY);
 		}
 		mouseActive = false;
 	}

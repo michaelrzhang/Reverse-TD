@@ -13,7 +13,7 @@ public class BasicCreature extends Creature{
 		hit_box = new Square(x_position, y_position, 10, Color.RED);
 		cost = 1;
 		health = 1;
-		x_velocity = 5.0;
+		x_velocity = 60.0;
 		y_velocity = 0.0;
 	}
 
@@ -49,8 +49,8 @@ public class BasicCreature extends Creature{
 		update_shape();
 	}
 	private void move(double dt){
-		x_position += (x_velocity * dt);
-		y_position += (y_velocity * dt);
+		x_position += (int) Math.round(x_velocity * dt);
+		y_position += (int) Math.round(y_velocity * dt);
 		dg.remove_Creature(this);
 		dg = (DirectionGrid) map.closestGrid(x_position,y_position);  // grid is null here
 		dg.addCreature(this);
