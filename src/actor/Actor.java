@@ -3,16 +3,17 @@ import src.map.*;
 import src.bank.*;
 import src.shape.*;
 import src.*;
+import java.awt.Graphics2D;
 public abstract class Actor implements Selectable{
 	public String name;
-	public double x_position;
-	public double y_position;
+	public int x_position;
+	public int y_position;
 	public Shape hit_box;
 	public int cost;
 	public int health;
 	public Map map;
 	public Bank bank;
-	public Actor(String name, double x_position, double y_position, 
+	public Actor(String name, int x_position, int y_position, 
 		Shape hit_box, int cost, int health, Map map){
 		this.name = name;
 		this.x_position = x_position;
@@ -33,8 +34,8 @@ public abstract class Actor implements Selectable{
 	public boolean buy(){
 		return bank.withdraw(cost);
 	}
-	public void draw(){
-		hit_box.draw();
+	public void draw(Graphics2D g2d){
+		hit_box.draw(g2d);
 	}
 	public void remove(){
 		map.remove(this);

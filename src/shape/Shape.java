@@ -1,7 +1,7 @@
 package src.shape;
 
 import java.awt.Color;
-import lib.*;
+import java.awt.Graphics2D;
 
 public abstract class Shape{
 	// SHOULD TEST/CONSIDER IMPROVEMENTs to overlap
@@ -10,13 +10,13 @@ public abstract class Shape{
 	double y_position;
 	double apothem;
 	String name;
+	Color color;
 
 	// no argument constructor (so that it will compile)
-	public Shape(){
-	}
 
-	public Shape(double apothem){
+	public Shape(double apothem, Color c){
 		this.apothem = apothem;
+		this.color = c;
 	}
 
 	/**
@@ -96,29 +96,28 @@ public abstract class Shape{
 		return this.y_position;
 	}
 
-	public void draw(){
-	}
+	public abstract void draw(Graphics2D g2d);
 
-	public void setColor(String color){
-		if (color.equals("red"))
-			StdDraw.setPenColor(new Color(255,   0,   0));   // red
-		if (color.equals("green"))
-			StdDraw.setPenColor(new Color(  0, 255,   0));   // green
-		if (color.equals("blue"))
-			StdDraw.setPenColor(new Color(  0,   0, 255));   // blue
-		if (color.equals("yellow"))
-			StdDraw.setPenColor(new Color(255, 255,   0));   // yellow
-		if (color.equals("white"))
-			StdDraw.setPenColor(new Color(255, 255, 255));   // white
-		if (color.equals("black"))
-			StdDraw.setPenColor(new Color(  0,   0,   0));   // black
-		if (color.equals("gray"))
-			StdDraw.setPenColor(new Color(100, 100, 100));   // gray
-	}
-	// http://www.rapidtables.com/web/color/RGB_Color.htm
-	// Use to determine RGB color
-	public void setColor(int r, int g, int b){
-		StdDraw.setPenColor(new Color(r,g,b));   // red		
-	}
+	// public void setColor(String color){
+	// 	if (color.equals("red"))
+	// 		StdDraw.setPenColor(new Color(255,   0,   0));   // red
+	// 	if (color.equals("green"))
+	// 		StdDraw.setPenColor(new Color(  0, 255,   0));   // green
+	// 	if (color.equals("blue"))
+	// 		StdDraw.setPenColor(new Color(  0,   0, 255));   // blue
+	// 	if (color.equals("yellow"))
+	// 		StdDraw.setPenColor(new Color(255, 255,   0));   // yellow
+	// 	if (color.equals("white"))
+	// 		StdDraw.setPenColor(new Color(255, 255, 255));   // white
+	// 	if (color.equals("black"))
+	// 		StdDraw.setPenColor(new Color(  0,   0,   0));   // black
+	// 	if (color.equals("gray"))
+	// 		StdDraw.setPenColor(new Color(100, 100, 100));   // gray
+	// }
+	// // http://www.rapidtables.com/web/color/RGB_Color.htm
+	// // Use to determine RGB color
+	// public void setColor(int r, int g, int b){
+	// 	StdDraw.setPenColor(new Color(r,g,b));   // red		
+	// }
 
 }

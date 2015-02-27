@@ -4,10 +4,11 @@ import src.actor.creature.*;
 import src.map.*;
 import src.grid.*;
 import src.actor.projectile.*;
+import java.awt.Color;
 
 public class HoningTower extends Tower{
 	// tower that fires nonhoning projectiles
-	public double fire_time = 0.5;
+	public double fire_time = 0.2;
 	public double next_fire_time;
 	// tower that fires nonhoning projectiles
 	public HoningTower(String name, Map m){
@@ -17,20 +18,20 @@ public class HoningTower extends Tower{
 		this.velocity = 20;
 		this.acceleration = 2;
 		this.time_alive = 5;
-		this.hit_box = new Square(x_position, y_position, 0.3);
+		this.hit_box = new Square(x_position, y_position, 30, Color.YELLOW);
 		this.honing = true;
 		this.cost = 10;
 		this.health = 100;
 		this.next_fire_time = fire_time;
 	}
-	public HoningTower(String name, Map m, double x_position, double y_position){
+	public HoningTower(String name, Map m, int x_position, int y_position){
 		super(name, m);
 		this.x_position = x_position;
 		this.y_position = y_position;
 		this.velocity = 20;
 		this.acceleration = 2;
 		this.time_alive = 5;
-		this.hit_box = new Square(x_position, y_position, 1.2);
+		this.hit_box = new Square(x_position, y_position, 30, Color.YELLOW);
 		this.honing = true;
 		this.cost = 10;
 		this.health = 100;
@@ -59,7 +60,7 @@ public class HoningTower extends Tower{
 		// 	map, -1*actual_velocity, -1*actual_velocity, true));
 	}
 	
-	public void draw(){
-		((Square) hit_box).drawTower(); // CASTING here for testing purposes
-	}
+	// public void draw(){
+	// 	((Square) hit_box).drawTower(); // CASTING here for testing purposes
+	// }
 }	
